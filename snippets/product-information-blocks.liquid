@@ -423,6 +423,10 @@
               product_id: product.id
             -%}
           </div>
+        {%- when 'mk_trust_line' -%}
+          <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
+            {%- render 'mk-trust-line', block: block, product: product -%}
+          </div>
         {%- when 'pickup_availability' -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
             {%- render 'product-pickup-availability', product: product -%}

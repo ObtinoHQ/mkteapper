@@ -88,7 +88,10 @@
             "swatch_size": 32,
             "button_style": "normal",
             "size_title": "Size",
-            "size_chart_from_page": ""
+            "size_chart_from_page": "",
+            "mk_size_style": "buttons",
+            "mk_show_color_siblings": true,
+            "mk_size_help_text": "Hvordan vælger jeg den rigtige størrelse?"
           }
         },
         "buy_buttons": {
@@ -217,6 +220,15 @@
             "show_dynamic_checkout_buttons": false,
             "show_quantity": true
           }
+        },
+        "mk_trust_line": {
+          "type": "mk_trust_line",
+          "settings": {
+            "return_text": "30 dages returret",
+            "show_delivery": true,
+            "showroom_text": "Showroom i Slagelse",
+            "showroom_link": ""
+          }
         }
       },
       "block_order": [
@@ -229,6 +241,7 @@
         "inventory",
         "variant_picker",
         "buy_buttons",
+        "mk_trust_line",
         "payment_info",
         "icon_with_text_UAYgQU",
         "pickup_availability",

@@ -169,7 +169,10 @@
           <div class="foxkit-cart-countdown-hook"></div>
           <div class="foxkit-cart-goal-hook"></div>
           {%- liquid
-            if section.settings.show_free_shipping_goal and settings.free_shipping_minimum_amount != blank
+            if localization.country.iso_code == 'SE' and settings.mk_free_shipping_se != blank
+              assign minimum_amount = settings.mk_free_shipping_se | remove: ' ' | remove: '.'
+              render 'free-shipping-goal', minimum_amount: minimum_amount, classes: 'w-full'
+            elsif section.settings.show_free_shipping_goal and settings.free_shipping_minimum_amount != blank
               assign minimum_amount = settings.free_shipping_minimum_amount | remove: ' '
               render 'free-shipping-goal', minimum_amount: minimum_amount, classes: 'w-full'
             endif
@@ -544,6 +547,8 @@
                 -%}
               </ul>
             </cart-items>
+
+            {%- render 'mk-cart-underlay' -%}
 
             {%- if section.settings.enable_cart_recommendations and cart != empty -%}
               {%- liquid
@@ -929,6 +934,7 @@
                 {% endif %}
               </div>
 
+              {%- render 'mk-cart-assurance' -%}
               <form action="{{ routes.cart_url }}" method="POST" novalidate class="drawer__footer-buttons flex gap-2">
                 <a href="{{ routes.cart_url }}" class="btn btn--secondary cart-view-button-in-drawer">
                   <span class="btn__text">{{ 'general.cart.view_empty_cart' | t }}</span>

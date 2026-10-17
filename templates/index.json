@@ -2231,9 +2231,54 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "mk_finder": {
+      "type": "mk-size-room-finder",
+      "blocks": {
+        "room_stue": {
+          "type": "room",
+          "settings": {
+            "title": "Stue",
+            "link": "shopify://collections/moderne-taepper"
+          }
+        },
+        "room_sovevaerelse": {
+          "type": "room",
+          "settings": {
+            "title": "Soveværelse",
+            "link": "shopify://collections/shaggy-taepper"
+          }
+        },
+        "room_gang": {
+          "type": "room",
+          "settings": {
+            "title": "Gang og entré",
+            "link": "shopify://collections/taepper-lobere-til-gangen"
+          }
+        },
+        "room_born": {
+          "type": "room",
+          "settings": {
+            "title": "Børneværelse",
+            "link": "shopify://collections/borne-taepper"
+          }
+        }
+      },
+      "block_order": [
+        "room_stue",
+        "room_sovevaerelse",
+        "room_gang",
+        "room_born"
+      ],
+      "settings": {
+        "heading": "Find tæppet efter størrelse eller rum",
+        "color_scheme": "scheme-1",
+        "sizes": ""
+      }
     }
   },
   "order": [
+    "mk_finder",
     "collection_list_slider_6qbNfj",
     "slideshow_QdkLDR",
     "grid_banner_U8bxMc",

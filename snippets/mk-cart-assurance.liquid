@@ -1,0 +1,37 @@
+{%- comment -%}
+  Expected delivery date and return policy, shown right above the checkout button.
+  Delivery uses the slowest item in the cart (product metafields custom.leveringstid_min/max,
+  otherwise Theme settings > MK optimering).
+{%- endcomment -%}
+{%- liquid
+  assign dmin = settings.mk_delivery_min_days | default: 0
+  assign dmax = settings.mk_delivery_max_days | default: 0
+  for item in cart.items
+    assign imin = item.product.metafields.custom.leveringstid_min.value | default: 0
+    assign imax = item.product.metafields.custom.leveringstid_max.value | default: 0
+    if imin > dmin
+      assign dmin = imin
+    endif
+    if imax > dmax
+      assign dmax = imax
+    endif
+  endfor
+-%}
+{%- if dmax > 0 or settings.mk_return_text != blank -%}
+  <div class="mk-assurance">
+    {%- if dmax > 0 -%}
+      <p class="mk-assurance__item">
+        {%- render 'icon-truck', size: 'small' -%}
+        <span data-mk-delivery data-min="{{ dmin }}" data-max="{{ dmax }}" data-prefix="Forventet levering">
+          Forventet levering om {{ dmin }}–{{ dmax }} hverdage
+        </span>
+      </p>
+    {%- endif -%}
+    {%- if settings.mk_return_text != blank -%}
+      <p class="mk-assurance__item">
+        {%- render 'icon-check', size: 'small' -%}
+        <span>{{ settings.mk_return_text }}</span>
+      </p>
+    {%- endif -%}
+  </div>
+{%- endif -%}

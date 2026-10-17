@@ -1,0 +1,98 @@
+{%- comment -%}
+  First screen on the homepage: the customer picks a size or a room and lands in a matching selection.
+  Size links go to the chosen collection with ?storrelse=<size>, which the collection page picks up
+  (prices for that size on every card, and the filter when the size bar has it turned on).
+{%- endcomment -%}
+{%- liquid
+  assign target = section.settings.size_collection
+  if target != blank
+    assign target_url = target.url
+  else
+    assign target_url = routes.all_products_collection_url
+  endif
+  assign sizes = section.settings.sizes | default: settings.mk_collection_sizes | split: ','
+-%}
+<div class="mk-finder color-{{ section.settings.color_scheme }}">
+  <div class="page-width mk-finder__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="mk-finder__heading h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    <div class="mk-finder__tabs" role="tablist">
+      <button type="button" role="tab" class="mk-finder__tab" aria-selected="true" aria-controls="MkFinderSize-{{ section.id }}" data-mk-tab>Størrelse</button>
+      <button type="button" role="tab" class="mk-finder__tab" aria-selected="false" aria-controls="MkFinderRoom-{{ section.id }}" data-mk-tab>Rum</button>
+    </div>
+
+    <div id="MkFinderSize-{{ section.id }}" role="tabpanel" class="mk-finder__panel">
+      <div class="mk-finder__sizes">
+        {%- for raw in sizes -%}
+          {%- capture parsed -%}{% render 'mk-size-parse', value: raw %}{%- endcapture -%}
+          {%- if parsed != blank -%}
+            {%- assign pp = parsed | split: '|' -%}
+            <a class="mk-finder__size" href="{{ target_url }}?storrelse={{ pp[1] }}" data-mk-size-link="{{ pp[1] }}">
+              <span class="mk-finder__shape mk-finder__shape--{{ pp[2] }}" aria-hidden="true"></span>
+              {{ pp[3] }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      {%- if section.settings.size_help_link != blank -%}
+        <a class="mk-finder__help" href="{{ section.settings.size_help_link }}">Hvilken størrelse passer til mit rum?</a>
+      {%- endif -%}
+    </div>
+
+    <div id="MkFinderRoom-{{ section.id }}" role="tabpanel" class="mk-finder__panel" hidden>
+      <div class="mk-finder__rooms">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign room_url = block.settings.link | default: target_url
+          -%}
+          <a class="mk-finder__room" href="{{ room_url }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 990px) 20vw, 45vw', class: 'mk-finder__room-img' }}
+            {%- else -%}
+              <span class="mk-finder__room-img mk-finder__room-img--empty"></span>
+            {%- endif -%}
+            <span class="mk-finder__room-title">{{ block.settings.title | escape }}</span>
+          </a>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "MK: Størrelse eller rum",
+  "tag": "section",
+  "class": "section mk-finder-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Overskrift", "default": "Find tæppet efter størrelse eller rum" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Farveskema", "default": "scheme-1" },
+    { "type": "collection", "id": "size_collection", "label": "Kollektion for størrelser", "info": "Fx alle løse tæpper. Tomt felt = alle produkter." },
+    { "type": "text", "id": "sizes", "label": "Størrelser", "info": "Kommasepareret. Tomt felt bruger Temaindstillinger > MK optimering." },
+    { "type": "url", "id": "size_help_link", "label": "Link til størrelsesguide" }
+  ],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Rum",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Rum", "default": "Stue" },
+        { "type": "image_picker", "id": "image", "label": "Billede" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MK: Størrelse eller rum",
+      "blocks": [
+        { "type": "room", "settings": { "title": "Stue" } },
+        { "type": "room", "settings": { "title": "Soveværelse" } },
+        { "type": "room", "settings": { "title": "Gang og entré" } },
+        { "type": "room", "settings": { "title": "Børneværelse" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

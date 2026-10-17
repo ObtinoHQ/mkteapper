@@ -1,0 +1,71 @@
+{%- comment -%}
+  Parses a raw size value ("080x150", "160x160 rundt", "Ø40 cm", "80 x 250 cm løber")
+  into one normalized form, so sizes can be sorted, grouped and matched across products.
+
+  Accepts:
+  - value: {String} raw option value
+
+  Outputs (no whitespace): "sortkey|key|shape|label" or nothing when the value is not a size.
+  - sortkey: 9-digit area, sorts smallest to largest as a string
+  - key: "80x150" or "r160", used to match sizes across products and settings
+  - shape: rect | runner | round
+  - label: "80 × 150 cm" or "Ø 160 cm"
+
+  Usage:
+  {%- capture parsed -%}{% render 'mk-size-parse', value: value %}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign raw = value | append: '' | downcase | strip
+  assign shape = 'rect'
+  if raw contains 'rund' or raw contains 'ø' or raw contains '⌀' or raw contains 'Ø'
+    assign shape = 'round'
+  endif
+
+  assign clean = raw | remove: 'cm' | remove: 'rundt' | remove: 'rund' | remove: 'løber' | remove: 'ø' | remove: 'Ø' | remove: '⌀' | remove: 'ca.' | replace: '×', 'x' | replace: '*', 'x' | replace: ',', '.' | remove: ' '
+  assign parts = clean | split: 'x'
+  assign a = parts[0] | plus: 0
+  assign b = a
+  if parts.size > 1
+    assign b = parts[1] | plus: 0
+  endif
+
+  assign is_size = true
+  if parts.size < 2 and shape != 'round'
+    assign is_size = false
+  endif
+  if a < 20 or b < 20
+    assign is_size = false
+  endif
+
+  if is_size
+    if a > b
+      assign tmp = a
+      assign a = b
+      assign b = tmp
+    endif
+
+    assign a = a | round
+    assign b = b | round
+    assign area = a | times: b
+    assign sortkey = area | plus: 100000000
+
+    if shape == 'round'
+      if a == b
+        assign key = 'r' | append: a
+        assign label = 'Ø ' | append: a | append: ' cm'
+      else
+        assign key = 'r' | append: a | append: 'x' | append: b
+        assign label = a | append: ' × ' | append: b | append: ' cm oval'
+      endif
+    else
+      assign runner_limit = a | times: 2.5
+      if b >= runner_limit
+        assign shape = 'runner'
+      endif
+      assign key = a | append: 'x' | append: b
+      assign label = a | append: ' × ' | append: b | append: ' cm'
+    endif
+
+    echo sortkey | append: '|' | append: key | append: '|' | append: shape | append: '|' | append: label
+  endif
+-%}

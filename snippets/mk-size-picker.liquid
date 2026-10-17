@@ -1,0 +1,211 @@
+{%- comment -%}
+  Size picker for rugs: every size visible, sorted smallest to largest, grouped
+  rectangular/runner and round, with the price on each choice.
+
+  Accepts:
+  - product: {Object}
+  - option: {Object} the size option (product_option)
+  - block: {Object} variant_picker block
+  - product_form_id: {String}
+  - size_chart_modal_id: {String} id of the size chart modal, when one exists
+  - has_size_chart: {Boolean}
+
+  block.settings.mk_size_style: 'buttons' (default) or 'card' (collapsed card that opens the list)
+{%- endcomment -%}
+{%- liquid
+  assign style = block.settings.mk_size_style | default: 'buttons'
+
+  # Bestseller keys from theme settings, in priority order
+  assign best_keys = ''
+  assign best_raw = settings.mk_bestseller_sizes | split: ','
+  for b in best_raw
+    capture bp
+      render 'mk-size-parse', value: b
+    endcapture
+    if bp != blank
+      assign bp_parts = bp | split: '|'
+      assign best_keys = best_keys | append: bp_parts[1] | append: ','
+    endif
+  endfor
+  assign best_keys = best_keys | split: ','
+
+  # Parse and sort values
+  assign entries = ''
+  for value in option.values
+    capture parsed
+      render 'mk-size-parse', value: value
+    endcapture
+    if parsed == blank
+      assign fallback_sort = 900000000 | plus: forloop.index0
+      assign parsed = fallback_sort | append: '|' | append: value | append: '|rect|' | append: value
+    endif
+    assign entries = entries | append: parsed | append: '~' | append: forloop.index0 | append: '##'
+  endfor
+  assign sorted = entries | split: '##' | sort
+
+  assign has_round = false
+  assign has_rect = false
+  assign has_runner = false
+  assign selected_label = option.selected_value
+  for entry in sorted
+    assign p = entry | split: '~' | first | split: '|'
+    if p[2] == 'round'
+      assign has_round = true
+    elsif p[2] == 'runner'
+      assign has_runner = true
+    else
+      assign has_rect = true
+    endif
+    assign idx = entry | split: '~' | last | plus: 0
+    if option.values[idx].selected
+      assign selected_label = p[3]
+    endif
+  endfor
+
+  # Top bestseller this product actually has and can sell
+  assign best_idx = -1
+  for bk in best_keys
+    for entry in sorted
+      assign p = entry | split: '~' | first | split: '|'
+      if p[1] == bk
+        assign idx = entry | split: '~' | last | plus: 0
+        if option.values[idx].available
+          assign best_idx = idx
+          break
+        endif
+      endif
+    endfor
+    if best_idx >= 0
+      break
+    endif
+  endfor
+
+  assign shapes_text = ''
+  if has_rect
+    assign shapes_text = 'Rektangulær'
+  endif
+  if has_runner
+    if shapes_text != blank
+      assign shapes_text = shapes_text | append: ', '
+    endif
+    assign shapes_text = shapes_text | append: 'løber'
+  endif
+  if has_round
+    if shapes_text != blank
+      assign shapes_text = shapes_text | append: ' eller '
+    endif
+    assign shapes_text = shapes_text | append: 'rund'
+  endif
+  assign shapes_text = shapes_text | capitalize
+-%}
+<fieldset
+  class="product-form__input product-form__input--mk-size mk-size mk-size--{{ style }} js"
+  data-mk-size-picker
+>
+  <legend class="form__label block w-full p-0">
+    <span class="font-body-bolder">Størrelse:</span>
+    <span class="text-subtext" data-mk-size-selected>{{ selected_label }}</span>
+  </legend>
+
+  {%- if style == 'card' -%}
+    <details class="mk-size__card" data-mk-size-card>
+      <summary class="mk-size__summary">
+        <span class="mk-size__icon" aria-hidden="true">
+          <svg width="28" height="20" viewBox="0 0 28 20" fill="none"><rect x="1" y="1" width="26" height="18" rx="3" stroke="currentColor" stroke-width="2"/></svg>
+        </span>
+        <span class="mk-size__summary-text">
+          <span class="mk-size__summary-title">{{ selected_label }}</span>
+          <span class="mk-size__summary-sub">{{ shapes_text }}</span>
+        </span>
+        <span class="mk-size__summary-count">{{ option.values.size }} størrelser {% render 'icon-caret-down', size: '2xs' %}</span>
+      </summary>
+      <div class="mk-size__panel">
+  {%- endif -%}
+
+  {%- for group in (1..2) -%}
+    {%- liquid
+      if group == 2 and has_round == false
+        continue
+      endif
+      if group == 1 and has_rect == false and has_runner == false
+        continue
+      endif
+    -%}
+    {%- if has_round -%}
+      <p class="mk-size__group-title">{% if group == 1 %}Rektangulær & løber{% else %}Rund{% endif %}</p>
+    {%- endif -%}
+    <div class="mk-size__grid">
+      {%- for entry in sorted -%}
+        {%- liquid
+          assign p = entry | split: '~' | first | split: '|'
+          if group == 1 and p[2] == 'round'
+            continue
+          endif
+          if group == 2 and p[2] != 'round'
+            continue
+          endif
+          assign idx = entry | split: '~' | last | plus: 0
+          assign value = option.values[idx]
+          assign input_id = section.id | append: '-mk-size-' | append: idx
+          assign v = value.variant
+        -%}
+        <input
+          type="radio"
+          id="{{ input_id }}"
+          name="{{ option.name | escape }}-{{ option.position }}"
+          value="{{ value | escape }}"
+          form="{{ product_form_id }}"
+          data-product-url="{{ value.product_url }}"
+          data-option-value-id="{{ value.id }}"
+          data-mk-size-key="{{ p[1] }}"
+          {% if value.selected %}checked{% endif %}
+          {% unless value.available %}class="disabled"{% endunless %}
+          {% if idx == best_idx %}data-mk-bestseller{% endif %}
+        >
+        <label for="{{ input_id }}" class="mk-size__choice{% unless value.available %} mk-size__choice--unavailable{% endunless %}">
+          <span class="mk-size__label">{{ p[3] }}</span>
+          {%- if v -%}
+            <span class="mk-size__price">
+              {%- if v.compare_at_price > v.price -%}
+                <s class="mk-size__compare">{{ v.compare_at_price | money_without_trailing_zeros }}</s>
+              {%- endif -%}
+              {{ v.price | money_without_trailing_zeros }}
+            </span>
+          {%- endif -%}
+          {%- if idx == best_idx -%}
+            <span class="mk-size__badge">Mest solgt</span>
+          {%- endif -%}
+          {%- unless value.available -%}
+            <span class="mk-size__soldout">Udsolgt</span>
+          {%- endunless -%}
+        </label>
+      {%- endfor -%}
+    </div>
+  {%- endfor -%}
+
+  {%- if style == 'card' -%}
+      </div>
+    </details>
+  {%- endif -%}
+
+  {%- if has_size_chart or block.settings.mk_size_help_url != blank -%}
+    <div class="mk-size__links">
+      {%- if has_size_chart -%}
+        <button
+          type="button"
+          class="open-size-chart no-js-hidden mk-size__link"
+          aria-controls="{{ size_chart_modal_id }}"
+          aria-haspopup="dialog"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 17 17 3l4 4L7 21l-4-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m7 13 2 2m1-5 2 2m1-5 2 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Størrelsesguide
+        </button>
+      {%- endif -%}
+      {%- if block.settings.mk_size_help_url != blank -%}
+        <a class="mk-size__link" href="{{ block.settings.mk_size_help_url }}">
+          {{- block.settings.mk_size_help_text | default: 'Hvordan vælger jeg den rigtige størrelse?' -}}
+        </a>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+</fieldset>

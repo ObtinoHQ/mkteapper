@@ -349,6 +349,39 @@
       "limit": 1,
       "settings": [
         {
+          "type": "header",
+          "content": "MK optimering"
+        },
+        {
+          "type": "select",
+          "id": "mk_size_style",
+          "label": "Størrelsesvælger",
+          "options": [
+            { "value": "default", "label": "Temaets standard" },
+            { "value": "buttons", "label": "Synlige knapper med pris" },
+            { "value": "card", "label": "Kort der folder ud (som taeppeunivers.dk)" }
+          ],
+          "default": "default"
+        },
+        {
+          "type": "checkbox",
+          "id": "mk_show_color_siblings",
+          "label": "Vis farver fra andre produkter",
+          "info": "Bruger produkt-metafeltet custom.farvevarianter (liste af produkter).",
+          "default": false
+        },
+        {
+          "type": "url",
+          "id": "mk_size_help_url",
+          "label": "Link: hjælp til at vælge størrelse"
+        },
+        {
+          "type": "text",
+          "id": "mk_size_help_text",
+          "label": "Linktekst",
+          "default": "Hvordan vælger jeg den rigtige størrelse?"
+        },
+        {
           "type": "select",
           "id": "picker_type",
           "options": [
@@ -468,6 +501,17 @@
           "type": "paragraph",
           "content": "t:sections.main-product.blocks.variant_picker.settings.size_chart.paragraph_2.content"
         }
+      ]
+    },
+    {
+      "type": "mk_trust_line",
+      "name": "MK: Tryghedslinje",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "return_text", "label": "Returret", "default": "30 dages returret" },
+        { "type": "checkbox", "id": "show_delivery", "label": "Vis leveringstid", "default": true, "info": "Bruger leveringstiden fra Temaindstillinger > MK optimering." },
+        { "type": "text", "id": "showroom_text", "label": "Showroom", "default": "Showroom i Slagelse" },
+        { "type": "url", "id": "showroom_link", "label": "Link til showroom" }
       ]
     },
     {

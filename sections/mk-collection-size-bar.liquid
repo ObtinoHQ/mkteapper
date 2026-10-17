@@ -1,0 +1,40 @@
+{%- comment -%}
+  Size chooser at the top of collection pages. Choosing a size:
+  - shows the price for that size on every product card and links the card to that size
+  - remembers the size for the rest of the visit, so the product page opens on it
+  - optionally applies the collection filter for that size (needs normalized size names)
+{%- endcomment -%}
+{%- liquid
+  assign sizes = section.settings.sizes | default: settings.mk_collection_sizes | split: ','
+-%}
+<div class="mk-size-bar page-width" data-mk-size-bar data-filter-param="{% if section.settings.apply_filter %}{{ section.settings.filter_param | escape }}{% endif %}">
+  <p class="mk-size-bar__title">{{ section.settings.heading | escape }}</p>
+  <div class="mk-size-bar__chips" role="group" aria-label="{{ section.settings.heading | escape }}">
+    {%- for raw in sizes -%}
+      {%- capture parsed -%}{% render 'mk-size-parse', value: raw %}{%- endcapture -%}
+      {%- if parsed != blank -%}
+        {%- assign pp = parsed | split: '|' -%}
+        <button type="button" class="mk-size-bar__chip" data-mk-size-chip="{{ pp[1] }}" data-label="{{ pp[3] }}" aria-pressed="false">
+          {{- pp[3] -}}
+        </button>
+      {%- endif -%}
+    {%- endfor -%}
+    <button type="button" class="mk-size-bar__chip mk-size-bar__chip--clear" data-mk-size-chip="" hidden>Alle størrelser</button>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "MK: Størrelsesvælger",
+  "tag": "section",
+  "class": "section mk-size-bar-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Overskrift", "default": "Vælg din størrelse" },
+    { "type": "text", "id": "sizes", "label": "Størrelser", "info": "Kommasepareret. Tomt felt bruger Temaindstillinger > MK optimering." },
+    { "type": "checkbox", "id": "apply_filter", "label": "Filtrér også kollektionen på størrelsen", "default": false, "info": "Slå kun til, når størrelsesnavnene i produktdata er ensrettet til fx '160x230 cm' og 'Ø160 cm'." },
+    { "type": "text", "id": "filter_param", "label": "Filterparameter", "default": "filter.v.option.størrelse" }
+  ],
+  "presets": [{ "name": "MK: Størrelsesvælger" }],
+  "enabled_on": { "templates": ["collection", "search"] }
+}
+{% endschema %}

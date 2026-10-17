@@ -9,6 +9,9 @@
   Usage:
   {% render 'product-variant-picker', product: product, block: block, product_form_id: product_form_id %}
 {% endcomment %}
+{%- if block.settings.mk_show_color_siblings -%}
+  {% render 'mk-color-siblings', product: product %}
+{%- endif -%}
 {%- unless product.has_only_default_variant -%}
   {% liquid
     assign size_option_name = block.settings.size_title | downcase
@@ -27,6 +30,32 @@
     data-update-url="{% if update_url == false %}false{% else %}true{% endif %}"
   >
     {%- for option in product.options_with_values -%}
+      {%- liquid
+        assign mk_is_size = false
+        if block.settings.mk_size_style != blank and block.settings.mk_size_style != 'default'
+          assign mk_name = option.name | downcase | strip
+          if mk_name == 'størrelse' or mk_name == 'size' or mk_name == 'str.' or mk_name == 'mål' or mk_name == 'storlek'
+            assign mk_is_size = true
+          else
+            capture mk_first
+              render 'mk-size-parse', value: option.values.first
+            endcapture
+            if mk_first != blank
+              assign mk_is_size = true
+            endif
+          endif
+        endif
+      -%}
+      {%- if mk_is_size -%}
+        {%- liquid
+          assign mk_has_chart = false
+          if size_chart_content != blank
+            assign mk_has_chart = true
+          endif
+          render 'mk-size-picker', product: product, option: option, block: block, product_form_id: product_form_id, size_chart_modal_id: size_chart_modal_id, has_size_chart: mk_has_chart
+        -%}
+        {%- continue -%}
+      {%- endif -%}
       {%- liquid
         assign option_name_downcase = option.name | downcase
         assign swatch_count = option.values | map: 'swatch' | compact | size
