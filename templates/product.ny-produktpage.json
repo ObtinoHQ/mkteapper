@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumbs": {
@@ -55,9 +64,7 @@
             "icon_2": "check",
             "heading_2": "Øko-certificeret",
             "icon_3": "check",
-            "heading_3": "Fysisk showroom",
-            "icon_4": "calendar",
-            "heading_4": "Prøv i 30 dage"
+            "heading_3": "Fysisk showroom"
           }
         },
         "klarna_on_site_messaging_app_block_fzhTDC": {
@@ -128,9 +135,7 @@
             "icon_2": "arrow-up-left",
             "heading_2": "Over <strong>10.000</strong> glade kunder",
             "icon_3": "smiley",
-            "heading_3": "Telefon<strong>:</strong> <strong>50 34 50 23</strong>",
-            "icon_4": "calendar",
-            "heading_4": "Prøv i 30 dage"
+            "heading_3": "Telefon<strong>:</strong> <strong>50 34 50 23</strong>"
           }
         },
         "pickup_availability": {

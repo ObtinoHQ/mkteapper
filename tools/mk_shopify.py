@@ -69,12 +69,28 @@ def parse_size(value):
     return a, b, shape
 
 
+SHAPE_WORDS = ("oval", "organisk", "shape")
+NOTE_MARKERS = ("(", "forudbestilling")
+
+
 def canonical(value):
     """One naming scheme for the filter: '160x230 cm', 'Ø160 cm', '120x170 cm oval'."""
     p = parse_size(value)
     if not p:
         return None
     a, b, shape = p
+    raw = str(value).lower()
     if shape == "round":
-        return f"Ø{a} cm" if a == b else f"{a}x{b} cm oval"
-    return f"{a}x{b} cm"
+        name = f"Ø{a} cm" if a == b else f"{a}x{b} cm oval"
+    else:
+        name = f"{a}x{b} cm"
+    # Shape words the size alone doesn't carry: dropping them would sell an oval as a rectangle
+    for word in SHAPE_WORDS:
+        if word in raw and word not in name:
+            name += f" {word}"
+            break
+    # Keep notes such as "(FORUDBESTILLING UGE 46)" as they are
+    cut = min((raw.find(m) for m in NOTE_MARKERS if m in raw), default=-1)
+    if cut >= 0:
+        name += " " + str(value)[cut:].strip()
+    return name

@@ -52,6 +52,32 @@
     el.innerHTML = html;
   };
 
+  // A size within 10 cm on each side counts as the chosen size (160x220 and 160x235 for 160x230),
+  // shown with its real measurements. Shapes never mix: round, oval and rectangular stay apart.
+  const SIZE_TOLERANCE_CM = 10;
+  const parseSizeKey = (key) => {
+    const m = /^(r?)(\d+)(?:x(\d+))?(-.+)?$/.exec(key || '');
+    if (!m) return null;
+    return { kind: m[1] + (m[1] && m[3] ? 'x' : '') + (m[4] || ''), a: Number(m[2]), b: Number(m[3] || m[2]) };
+  };
+  const closestSize = (key, candidates) => {
+    if (candidates.includes(key)) return key;
+    const want = parseSizeKey(key);
+    if (!want) return null;
+    let best = null;
+    let bestDiff = Infinity;
+    candidates.forEach((c) => {
+      const p = parseSizeKey(c);
+      if (!p || p.kind !== want.kind) return;
+      const da = Math.abs(p.a - want.a);
+      const db = Math.abs(p.b - want.b);
+      if (da > SIZE_TOLERANCE_CM || db > SIZE_TOLERANCE_CM || da + db >= bestDiff) return;
+      best = c;
+      bestDiff = da + db;
+    });
+    return best;
+  };
+
   const applySizeToCards = (key, root = document) => {
     root.querySelectorAll('[data-mk-card-price][data-mk-sizes]').forEach((card) => {
       const def = card.querySelector('[data-mk-card-price-default]');
@@ -59,9 +85,9 @@
       const productCard = card.closest('.product-card');
       const baseUrl = card.dataset.mkUrl;
       const links = productCard ? productCard.querySelectorAll(`a[href^="${baseUrl}"]`) : [];
-      const entry = key
-        ? card.dataset.mkSizes.split(';').map((s) => s.split(':')).find((p) => p[0] === key)
-        : null;
+      const entries = card.dataset.mkSizes.split(';').map((s) => s.split(':'));
+      const match = key ? closestSize(key, entries.map((p) => p[0])) : null;
+      const entry = match ? entries.find((p) => p[0] === match) : null;
 
       if (!key) {
         def.hidden = false;
@@ -165,7 +191,9 @@
 
     const remembered = store.get(SIZE_KEY);
     const usable = (el) => el && !el.classList.contains('disabled');
-    let target = remembered ? picker.querySelector(`[data-mk-size-key="${remembered}"]`) : null;
+    const usableKeys = [...picker.querySelectorAll('[data-mk-size-key]:not(.disabled)')].map((i) => i.dataset.mkSizeKey);
+    const near = remembered ? closestSize(remembered, usableKeys) : null;
+    let target = near ? picker.querySelector(`[data-mk-size-key="${near}"]`) : null;
     if (!usable(target)) target = picker.querySelector('[data-mk-bestseller]');
     if (!usable(target) || target.checked) return;
 

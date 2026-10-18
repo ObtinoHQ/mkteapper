@@ -163,6 +163,24 @@
   border-color: rgb(var(--color-foreground));
 }
 .mk-size-bar__chip--clear { border-style: dashed; }
+.mk-size-bar--pills .mk-finder__shape { display: none; }
+/* Boxes: same look as the homepage finder; one scrolling row on mobile so products stay above the fold */
+.mk-size-bar--boxes .mk-size-bar__title { margin: 0 0 1.2rem; }
+.mk-size-bar--boxes .mk-size-bar__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 1.6rem;
+  border-color: rgba(var(--color-foreground), 0.2);
+  border-radius: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.mk-size-bar--boxes .mk-size-bar__chip:hover { border-color: rgb(var(--color-foreground)); }
+.mk-size-bar--boxes .mk-size-bar__chip[aria-pressed='true'] .mk-finder__shape { border-color: currentColor; }
+@media screen and (min-width: 990px) {
+  .mk-size-bar--boxes .mk-size-bar__chips { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); overflow: visible; }
+}
 .mk-card-price__size { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.6rem; }
 .mk-card-price__label { width: 100%; font-size: 1.2rem; color: rgba(var(--color-foreground), 0.7); }
 .mk-card-price__value { font-weight: 600; }

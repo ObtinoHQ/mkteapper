@@ -33,8 +33,15 @@
     {%- unless self_in_list -%}
       {%- render 'mk-color-sibling-item', item: product, current: true -%}
     {%- endunless -%}
+    {%- comment -%} Products that share a title (e.g. a round and a rectangular version) show once {%- endcomment -%}
+    {%- assign shown_titles = '|' | append: product.title | downcase | append: '|' -%}
     {%- for s in siblings -%}
+      {%- assign s_title = '|' | append: s.title | downcase | append: '|' -%}
+      {%- if s.id != product.id and shown_titles contains s_title -%}
+        {%- continue -%}
+      {%- endif -%}
       {%- if s.available or s.id == product.id -%}
+        {%- assign shown_titles = shown_titles | append: s.title | downcase | append: '|' -%}
         {%- assign is_current = false -%}
         {%- if s.id == product.id -%}{%- assign is_current = true -%}{%- endif -%}
         {%- render 'mk-color-sibling-item', item: s, current: is_current -%}
