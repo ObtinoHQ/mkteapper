@@ -204,11 +204,6 @@
           "auto_open_trigger_method": "combination"
         }
       },
-      "11349500561483629931": {
-        "type": "shopify://apps/notify-back-in-stock-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
-        "disabled": false,
-        "settings": {}
-      },
       "16488661044329386848": {
         "type": "shopify://apps/profitmetrics/blocks/head/019b0272-dcd0-785d-9894-392186bb1e9e",
         "disabled": false,
@@ -216,6 +211,11 @@
       },
       "4619911827133728258": {
         "type": "shopify://apps/localink/blocks/notfound/019f9606-e3a3-71fa-aa25-e3f2fabf34b2",
+        "disabled": false,
+        "settings": {}
+      },
+      "11349500561483629931": {
+        "type": "shopify://apps/notify-me/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
         "disabled": false,
         "settings": {}
       }

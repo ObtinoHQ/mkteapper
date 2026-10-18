@@ -1,1 +1,333 @@
-{"name":"Overlay group","type":"custom.overlay","sections":{"cart-drawer":{"type":"cart-drawer","settings":{"show_cart_note":true,"show_shipping_rates_calculator":false,"show_cart_coupon":true,"payment_enable":true,"show_free_shipping_goal":true,"enable_cart_recommendations":true,"cart_recommendations_color_scheme":"","cart_recommendations_heading":"Anbefalede produkter","cart_recommendations_limit":3,"cart_recommendations_products":["taeppeunderlag-skridaikkert-str-150x220-cm","kopi-af-taeppeunderlag-skridsikkert-mk-basic","taeppe-pletfjerner-til-vaesker-taski-tapi-stain-remover-2-0-75l-w2-kopi","taeppe-pletfjerner-taski-tapi-stain-remover-2-0-75l-w2","vaskbar-smudsmatte-mk-pro-2000-sort-439kr-m-kopi"],"cart_recommendations_layout":"horizontal-list","cart_mess_color_scheme":"scheme-13","cart_message":"✌🏼 Fri fragt til døren i DK","cart_message_alignment":"center","kalrna_text":"<p>Betal senere med Klarna. <a href=\"#\" title=\"#\">Læs mere<\/a><\/p>","kalrna_image":"shopify:\/\/shop_images\/svgviewer-png-output.png","terms_text":"<p>Jeg accepterer <a href=\"https:\/\/www.mktaepper.dk\/policies\/terms-of-service\" target=\"_blank\" title=\"https:\/\/www.mktaepper.dk\/policies\/terms-of-service\">vilkår og betingelser<\/a><\/p>","alert_text":"Du skal acceptere salgsvilkårene og -betingelserne for at checkout"}},"product-compare":{"type":"product-compare","blocks":{"info_BQEhkg":{"type":"info","settings":{"show_view_details_button":true}},"description_HnwTqC":{"type":"description","settings":{"text_line_limit":"3-lines","show_view_more_button":false}},"price_BbVPd4":{"type":"price","settings":{}},"vendor_DzTLqc":{"type":"vendor","settings":{}},"type_AzgBQT":{"type":"type","settings":{}},"variants_RYYmjz":{"type":"variants","settings":{}}},"block_order":["info_BQEhkg","description_HnwTqC","price_BbVPd4","vendor_DzTLqc","type_AzgBQT","variants_RYYmjz"],"disabled":true,"settings":{}},"quick-view":{"type":"quick-view","blocks":{"title":{"type":"title","settings":{"heading_size":"h3"}},"price":{"type":"price","settings":{}},"icon_with_text_dNbmeH":{"type":"icon-with-text","settings":{"layout":"horizontal","title_font":"body-bolder","title_size":"text-base","icon_1":"check","heading_1":"Modern","icon_2":"check","heading_2":"Eco-certified","icon_3":"check","heading_3":"Warranty"}},"inventory":{"type":"inventory","settings":{"text_style":"body","inventory_threshold":20,"show_inventory_quantity":true}},"description":{"type":"description","disabled":true,"settings":{}},"variant_picker":{"type":"variant_picker","settings":{"picker_type":"button","swatch_type":"color_swatch","swatch_style":"square","swatch_size":32,"button_style":"normal","size_title":"Size","size_chart_from_page":""}},"buy_buttons":{"type":"buy_buttons","settings":{"show_quantity_selector":false,"show_dynamic_checkout":false,"show_gift_card_recipient":true}}},"block_order":["title","price","icon_with_text_dNbmeH","inventory","description","variant_picker","buy_buttons"],"settings":{"show_image_border":false,"enable_sticky_info":true,"enable_video_looping":true}},"popup":{"type":"popup","blocks":{"image":{"type":"image","settings":{"image":"shopify:\/\/shop_images\/105644_MIL_360x_8895a450-712d-4ce6-94a9-903725a5be89.webp","image_position":"left"}},"heading":{"type":"heading","settings":{"heading":"Tilmeld dig for at få 10% RABAT på din første ordre","text_size":"h3"}},"text":{"type":"text","settings":{"text":"<p>Sexede og bæredygtige lækkerier? Tilmeld mig<\/p>","text_size":"text-base"}},"form":{"type":"form","settings":{"button_label":"Få 10% RABAT","button_icon":"none"}},"socials":{"type":"socials","settings":{}}},"block_order":["image","heading","text","form","socials"],"disabled":true,"settings":{"enable":true,"show_for_homepage_only":true,"show_for_visitors_only":true,"trigger_open":"delay","repeat_open":"every_day","alignment":"center","width":880,"show_teaser":false,"teaser_button_text":"Newsletter","teaser_popup_bg":"#d63a2f","teaser_popup_text":"#ffffff"}},"spotlight-picks":{"type":"spotlight-picks","blocks":{"discount_1":{"type":"discount","settings":{"color_scheme":"scheme-10","icon":"tag","icon_size":"large","heading":"Save an extra 10%","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h5","description":"<p>Use promo code GARA10<\/p>","discount_code":"GARA10","button_label":"Copy","button_style":"btn--primary","button_icon":"none"}},"item_Nn9kW6":{"type":"item","settings":{"color_scheme":"scheme-10","icon":"tag","icon_size":"large","heading":"Select lamp from $170","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h5","description":"<p>Valid for filter <\/p>","button_label":"Shop","button_link":"","button_style":"btn--primary","button_icon":"none"}},"item_dQn9tr":{"type":"item","settings":{"color_scheme":"scheme-10","icon":"tag","icon_size":"large","heading":"This week’s hot deals","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h5","description":"<p>Online exclusive<\/p>","button_label":"Shop","button_link":"","button_style":"btn--primary","button_icon":"none"}},"item_xfLhK8":{"type":"item","settings":{"color_scheme":"scheme-10","icon":"tag","icon_size":"large","heading":"Free Delivery","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h5","description":"<p>on all major appliances $500+<\/p>","button_label":"Shop","button_link":"","button_style":"btn--primary","button_icon":"none"}}},"block_order":["discount_1","item_Nn9kW6","item_dQn9tr","item_xfLhK8"],"disabled":true,"custom_css":[".spotlight__item-content {max-width: 22rem;}"],"settings":{"header_color_scheme":"scheme-13","header_message":"✌🏼 Free Express Shipping on orders $200!","header_message_alignment":"center","heading":"Special Offers","highlight_style":"none","highlight_font_style":"italic","highlight_style_color":"","highlight_text_color":"","heading_size":"h4","teaser_button_label":"Special Offers For You","teaser_button_background":"#c4301c","teaser_button_text_color":"#ffffff","show_close_teaser_button":true}}},"order":["cart-drawer","product-compare","quick-view","popup","spotlight-picks"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "Overlay group",
+  "type": "custom.overlay",
+  "sections": {
+    "cart-drawer": {
+      "type": "cart-drawer",
+      "settings": {
+        "show_cart_note": true,
+        "show_shipping_rates_calculator": false,
+        "show_cart_coupon": true,
+        "payment_enable": true,
+        "show_free_shipping_goal": true,
+        "enable_cart_recommendations": true,
+        "cart_recommendations_color_scheme": "",
+        "cart_recommendations_heading": "Anbefalede produkter",
+        "cart_recommendations_limit": 3,
+        "cart_recommendations_products": [
+          "taeppeunderlag-skridaikkert-str-150x220-cm",
+          "kopi-af-taeppeunderlag-skridsikkert-mk-basic",
+          "taeppe-pletfjerner-til-vaesker-taski-tapi-stain-remover-2-0-75l-w2-kopi",
+          "taeppe-pletfjerner-taski-tapi-stain-remover-2-0-75l-w2",
+          "vaskbar-smudsmatte-mk-pro-2000-sort-439kr-m-kopi"
+        ],
+        "cart_recommendations_layout": "horizontal-list",
+        "cart_mess_color_scheme": "scheme-13",
+        "cart_message": "✌🏼 Fri fragt til døren i DK",
+        "cart_message_alignment": "center",
+        "kalrna_text": "<p>Betal senere med Klarna. <a href=\"#\" title=\"#\">Læs mere</a></p>",
+        "kalrna_image": "shopify://shop_images/svgviewer-png-output.png"
+      }
+    },
+    "product-compare": {
+      "type": "product-compare",
+      "blocks": {
+        "info_BQEhkg": {
+          "type": "info",
+          "settings": {
+            "show_view_details_button": true
+          }
+        },
+        "description_HnwTqC": {
+          "type": "description",
+          "settings": {
+            "text_line_limit": "3-lines",
+            "show_view_more_button": false
+          }
+        },
+        "price_BbVPd4": {
+          "type": "price",
+          "settings": {}
+        },
+        "vendor_DzTLqc": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "type_AzgBQT": {
+          "type": "type",
+          "settings": {}
+        },
+        "variants_RYYmjz": {
+          "type": "variants",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "info_BQEhkg",
+        "description_HnwTqC",
+        "price_BbVPd4",
+        "vendor_DzTLqc",
+        "type_AzgBQT",
+        "variants_RYYmjz"
+      ],
+      "disabled": true,
+      "settings": {}
+    },
+    "quick-view": {
+      "type": "quick-view",
+      "blocks": {
+        "title": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h3"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "icon_with_text_dNbmeH": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "horizontal",
+            "title_font": "body-bolder",
+            "title_size": "text-base",
+            "icon_1": "check",
+            "heading_1": "Modern",
+            "icon_2": "check",
+            "heading_2": "Eco-certified",
+            "icon_3": "check",
+            "heading_3": "Warranty"
+          }
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {
+            "text_style": "body",
+            "inventory_threshold": 20,
+            "show_inventory_quantity": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "disabled": true,
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_type": "color_swatch",
+            "swatch_style": "square",
+            "swatch_size": 32,
+            "button_style": "normal",
+            "size_title": "Size",
+            "size_chart_from_page": ""
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity_selector": false,
+            "show_dynamic_checkout": false,
+            "show_gift_card_recipient": true
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "icon_with_text_dNbmeH",
+        "inventory",
+        "description",
+        "variant_picker",
+        "buy_buttons"
+      ],
+      "settings": {
+        "show_image_border": false,
+        "enable_sticky_info": true,
+        "enable_video_looping": true
+      }
+    },
+    "popup": {
+      "type": "popup",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/105644_MIL_360x_8895a450-712d-4ce6-94a9-903725a5be89.webp",
+            "image_position": "left"
+          }
+        },
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Tilmeld dig for at få 10% RABAT på din første ordre",
+            "text_size": "h3"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Sexede og bæredygtige lækkerier? Tilmeld mig</p>",
+            "text_size": "text-base"
+          }
+        },
+        "form": {
+          "type": "form",
+          "settings": {
+            "button_label": "Få 10% RABAT",
+            "button_icon": "none"
+          }
+        },
+        "socials": {
+          "type": "socials",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "image",
+        "heading",
+        "text",
+        "form",
+        "socials"
+      ],
+      "disabled": true,
+      "settings": {
+        "enable": true,
+        "show_for_homepage_only": true,
+        "show_for_visitors_only": true,
+        "trigger_open": "delay",
+        "repeat_open": "every_day",
+        "alignment": "center",
+        "width": 880,
+        "show_teaser": false,
+        "teaser_button_text": "Newsletter",
+        "teaser_popup_bg": "#d63a2f",
+        "teaser_popup_text": "#ffffff"
+      }
+    },
+    "spotlight-picks": {
+      "type": "spotlight-picks",
+      "blocks": {
+        "discount_1": {
+          "type": "discount",
+          "settings": {
+            "color_scheme": "scheme-10",
+            "icon": "tag",
+            "icon_size": "large",
+            "heading": "Save an extra 10%",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>Use promo code GARA10</p>",
+            "discount_code": "GARA10",
+            "button_label": "Copy",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "item_Nn9kW6": {
+          "type": "item",
+          "settings": {
+            "color_scheme": "scheme-10",
+            "icon": "tag",
+            "icon_size": "large",
+            "heading": "Select lamp from $170",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>Valid for filter </p>",
+            "button_label": "Shop",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "item_dQn9tr": {
+          "type": "item",
+          "settings": {
+            "color_scheme": "scheme-10",
+            "icon": "tag",
+            "icon_size": "large",
+            "heading": "This week’s hot deals",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>Online exclusive</p>",
+            "button_label": "Shop",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        },
+        "item_xfLhK8": {
+          "type": "item",
+          "settings": {
+            "color_scheme": "scheme-10",
+            "icon": "tag",
+            "icon_size": "large",
+            "heading": "Free Delivery",
+            "highlight_style": "none",
+            "highlight_font_style": "italic",
+            "highlight_style_color": "",
+            "highlight_text_color": "",
+            "heading_size": "h5",
+            "description": "<p>on all major appliances $500+</p>",
+            "button_label": "Shop",
+            "button_link": "",
+            "button_style": "btn--primary",
+            "button_icon": "none"
+          }
+        }
+      },
+      "block_order": [
+        "discount_1",
+        "item_Nn9kW6",
+        "item_dQn9tr",
+        "item_xfLhK8"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".spotlight__item-content {max-width: 22rem;}"
+      ],
+      "settings": {
+        "header_color_scheme": "scheme-13",
+        "header_message": "✌🏼 Free Express Shipping on orders $200!",
+        "header_message_alignment": "center",
+        "heading": "Special Offers",
+        "highlight_style": "none",
+        "highlight_font_style": "italic",
+        "highlight_style_color": "",
+        "highlight_text_color": "",
+        "heading_size": "h4",
+        "teaser_button_label": "Special Offers For You",
+        "teaser_button_background": "#c4301c",
+        "teaser_button_text_color": "#ffffff",
+        "show_close_teaser_button": true
+      }
+    }
+  },
+  "order": [
+    "cart-drawer",
+    "product-compare",
+    "quick-view",
+    "popup",
+    "spotlight-picks"
+  ]
+}

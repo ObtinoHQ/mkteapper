@@ -260,7 +260,8 @@
         "sticky_atc_bar_7HgNgP"
       ],
       "custom_css": [
-        "@media (min-width: 1280px) {.product {padding-inline: 5rem; }}"
+        "@media (min-width: 1280px) {.product {padding-inline: 5rem; }}",
+        ".custom-bis-wrapper,basic-modal[id^=\"BISModal\"] {display: none !important;}"
       ],
       "settings": {
         "color_scheme": "scheme-1",
