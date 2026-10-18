@@ -468,7 +468,8 @@
           "progress_bar_color": "#0d8756"
         }
       }
-    }
+    },
+    "mk_demo_color_groups": "villeroy-boch-1890-uldtaeppe-kenso-beige,villeroy-boch-1890-uldtaeppe-kenso-brun,villeroy-boch-1890-uldtaeppe-kenso-creme\nbatu-ba100-beige-taeppe,batu-ba100-brun-taeppe,batu-ba100-flode-taeppe,batu-ba100-gra-taeppe,batu-ba100-solv-taeppe\nkopi-af-7000grey-rund,kopi-af-ata-7000antracit-1,kopi-af-ata-7000antracit-2,kopi-af-ata-7000antracit-4,kopi-af-ata-7000antracit-5,kopi-af-ata-7000beige,kopi-af-nizza-1800anthrazit"
   },
   "installed_preset_name": "Hyper",
   "presets": {
