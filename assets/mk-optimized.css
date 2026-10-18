@@ -269,3 +269,6 @@
   border: 1px solid rgba(0, 0, 0, 0.07);
   border-radius: 0.3rem;
 }
+
+/* ---------- Product page sale timer: hide the whole row until the timer runs, and after it ends ---------- */
+.mk-pdp-timer:has(countdown-timer.hidden) { display:none; }
