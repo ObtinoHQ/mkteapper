@@ -1957,7 +1957,7 @@
         "type": "text",
         "id": "mk_return_text",
         "label": "Returret (kurven)",
-        "default": "30 dages returret"
+        "default": "14 dages returret"
       },
       {
         "type": "header",
