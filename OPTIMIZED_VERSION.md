@@ -49,6 +49,13 @@ Wall fans (Sensu) in the cart: set them in the cart drawer's existing "Anbefaled
 - **Return wording**: block "MK: Tryghedslinje" and `mk_return_text`. Today's policy is 30 days, customer pays the return.
 - **Free shipping to Sweden**: the policy text says "over 999 kr." without a currency. Confirm DKK or SEK. The setting is in DKK.
 - **Color groups**: `python3 tools/color_groups.py` (dry run) groups products whose title differs only in the last word.
+  Products that share a title show as one swatch.
+- **Product cleanup list**: `SHOPIFY_STORE=… python3 tools/find_duplicates.py` (read-only) lists live products that
+  share a title, and products still on a copied web address ("-kopi", "-copy"). Those are real, different products:
+  only their title or URL needs fixing (tick "create URL redirect" when changing a handle).
+- **Size matching on collection pages**: a size within 10 cm on each side counts as the chosen size and shows its
+  real measurements (`SIZE_TOLERANCE_CM` in `assets/mk-optimized.js`). The optional collection filter still
+  matches exact size names only.
 
 The data scripts change the shared catalog, so they affect **both** test arms. Run them before the test starts.
 

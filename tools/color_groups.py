@@ -22,7 +22,11 @@ for p in all_products("id title handle vendor status"):
     words = p["title"].replace(",", " ").split()
     if len(words) < 3:
         continue
-    groups[(p["vendor"], " ".join(words[:-1]).lower())].append((p, words[-1]))
+    group = groups[(p["vendor"], " ".join(words[:-1]).lower())]
+    # Products that share a title (a round and a rectangular version) would show as two identical swatches
+    if any(o["title"].lower() == p["title"].lower() for o, _ in group):
+        continue
+    group.append((p, words[-1]))
 
 rows, batch = [], []
 for (vendor, base), members in groups.items():
