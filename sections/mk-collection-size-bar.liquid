@@ -7,14 +7,15 @@
 {%- liquid
   assign sizes = section.settings.sizes | default: settings.mk_collection_sizes | split: ','
 -%}
-<div class="mk-size-bar page-width" data-mk-size-bar data-filter-param="{% if section.settings.apply_filter %}{{ section.settings.filter_param | escape }}{% endif %}">
-  <p class="mk-size-bar__title">{{ section.settings.heading | escape }}</p>
+<div class="mk-size-bar mk-size-bar--{{ section.settings.style | default: 'boxes' }} page-width" data-mk-size-bar data-filter-param="{% if section.settings.apply_filter %}{{ section.settings.filter_param | escape }}{% endif %}">
+  <h2 class="mk-size-bar__title">{{ section.settings.heading | escape }}</h2>
   <div class="mk-size-bar__chips" role="group" aria-label="{{ section.settings.heading | escape }}">
     {%- for raw in sizes -%}
       {%- capture parsed -%}{% render 'mk-size-parse', value: raw %}{%- endcapture -%}
       {%- if parsed != blank -%}
         {%- assign pp = parsed | split: '|' -%}
         <button type="button" class="mk-size-bar__chip" data-mk-size-chip="{{ pp[1] }}" data-label="{{ pp[3] }}" aria-pressed="false">
+          <span class="mk-finder__shape mk-finder__shape--{{ pp[2] }}" aria-hidden="true"></span>
           {{- pp[3] -}}
         </button>
       {%- endif -%}
@@ -29,7 +30,17 @@
   "tag": "section",
   "class": "section mk-size-bar-section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Overskrift", "default": "Vælg din størrelse" },
+    { "type": "text", "id": "heading", "label": "Overskrift", "default": "Find tæppet efter størrelse" },
+    {
+      "type": "select",
+      "id": "style",
+      "label": "Udseende",
+      "options": [
+        { "value": "boxes", "label": "Bokse med form (som på forsiden)" },
+        { "value": "pills", "label": "Smal række" }
+      ],
+      "default": "boxes"
+    },
     { "type": "text", "id": "sizes", "label": "Størrelser", "info": "Kommasepareret. Tomt felt bruger Temaindstillinger > MK optimering." },
     { "type": "checkbox", "id": "apply_filter", "label": "Filtrér også kollektionen på størrelsen", "default": false, "info": "Slå kun til, når størrelsesnavnene i produktdata er ensrettet til fx '160x230 cm' og 'Ø160 cm'." },
     { "type": "text", "id": "filter_param", "label": "Filterparameter", "default": "filter.v.option.størrelse" }
