@@ -1912,6 +1912,12 @@
         "content": "Størrelser"
       },
       {
+        "type": "textarea",
+        "id": "mk_demo_color_groups",
+        "label": "Farvegrupper til demo",
+        "info": "Kun til forhåndsvisning, før metafeltet custom.farvevarianter er udfyldt. Én gruppe pr. linje, produkt-handles adskilt af komma."
+      },
+      {
         "type": "text",
         "id": "mk_bestseller_sizes",
         "label": "Mest solgte størrelser",
