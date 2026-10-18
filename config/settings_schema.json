@@ -2006,6 +2006,43 @@
       },
       {
         "type": "header",
+        "content": "Udsalgs-timer"
+      },
+      {
+        "type": "paragraph",
+        "content": "Bruges af timeren i toppen og på produktsiden, når de står til \"Brug udsalgs-timeren fra temaindstillinger\"."
+      },
+      {
+        "type": "select",
+        "id": "mk_sale_timer_type",
+        "label": "Type",
+        "options": [
+          { "value": "fixed_time", "label": "Fast slutdato" },
+          { "value": "evergreen", "label": "Gentagende (starter forfra)" }
+        ],
+        "default": "evergreen"
+      },
+      {
+        "type": "text",
+        "id": "mk_sale_timer_time",
+        "label": "Slutdato",
+        "default": "2026/12/31 11:59 PM",
+        "info": "Format: ÅÅÅÅ/MM/DD TT:MM AM/PM, fx 2026/11/30 11:59 PM. Kun ved fast slutdato."
+      },
+      {
+        "type": "select",
+        "id": "mk_sale_timer_duration",
+        "label": "Starter forfra",
+        "options": [
+          { "value": "every_day", "label": "Hver dag" },
+          { "value": "every_week", "label": "Hver uge" },
+          { "value": "every_month", "label": "Hver måned" }
+        ],
+        "default": "every_month",
+        "info": "Kun ved gentagende timer."
+      },
+      {
+        "type": "header",
         "content": "Labels"
       },
       {

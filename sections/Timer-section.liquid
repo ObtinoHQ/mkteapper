@@ -68,11 +68,22 @@ a.countdown-cta-btn span {
   {% endif %}
 
   <div class="countdown-timer-box">
+    {%- liquid
+      # MK: one sale timer for the header and the product page
+      assign timer_type = section.settings.type
+      assign timer_duration = section.settings.duration
+      assign timer_time = section.settings.time
+      if section.settings.mk_use_sale_timer
+        assign timer_type = settings.mk_sale_timer_type
+        assign timer_duration = settings.mk_sale_timer_duration
+        assign timer_time = settings.mk_sale_timer_time
+      endif
+    -%}
     {% render 'countdown-timer',
       id: section.id,
-      type: section.settings.type,
-      duration: section.settings.duration,
-      time: section.settings.time,
+      type: timer_type,
+      duration: timer_duration,
+      time: timer_time,
       number_size: section.settings.number_size
     %}
   </div>
@@ -92,6 +103,13 @@ a.countdown-cta-btn span {
 {
   "name": "Custom Countdown Section",
   "settings": [
+    {
+      "type": "checkbox",
+      "id": "mk_use_sale_timer",
+      "label": "Brug udsalgs-timeren fra temaindstillinger",
+      "info": "Temaindstillinger > MK optimering > Udsalgs-timer. Så følger timeren på produktsiden med.",
+      "default": true
+    },
     {
   "type": "text",
   "id": "heading",
