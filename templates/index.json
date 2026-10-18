@@ -2101,6 +2101,7 @@
     },
     "mk_finder": {
       "type": "mk-size-room-finder",
+      "disabled": true,
       "blocks": {
         "room_stue": {
           "type": "room",
