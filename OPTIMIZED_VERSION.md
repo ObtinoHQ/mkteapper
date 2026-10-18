@@ -10,6 +10,8 @@ live theme.
 2. Fill in Theme settings > **MK optimering** (see below) and pick the underlay products.
 3. Shoplift (already installed, `snippets/shoplift.liquid`): create a **theme test**, live theme vs. this theme, 50/50.
    Primary metric: revenue per visitor. Segment: device, Facebook/Instagram in-app browser, country SE.
+   Before starting, copy any admin edits made on the live theme since this branch was cut (banners, cart drawer,
+   homepage collections): the GitHub sync on `main` lags behind the live theme, so the two arms drift apart otherwise.
 4. Run at least four weeks. Avoid starting in the middle of Black Week: the traffic mix changes and both arms
    get the same campaign, but a start or stop inside it distorts the baseline.
 
