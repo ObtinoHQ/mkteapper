@@ -2003,6 +2003,39 @@
         "id": "mk_newsletter_delay_seconds",
         "label": "... eller efter antal sekunder",
         "default": 30
+      },
+      {
+        "type": "header",
+        "content": "Labels"
+      },
+      {
+        "type": "paragraph",
+        "content": "Giv et produkt tagget label:Bestseller i Shopify, så vises \"Bestseller\" på produktkortet og produktbilledet. Teksten efter label: er det, der står på labelen."
+      },
+      {
+        "type": "textarea",
+        "id": "mk_label_colors",
+        "label": "Farve pr. label",
+        "default": "Bestseller: #1f3a5f\nNyhed: #008c62\nTilbud: #c4301c\nKun online: #6b4e2e",
+        "info": "Én pr. linje: Label: #farvekode. Labels, der ikke står her, får standardfarven."
+      },
+      {
+        "type": "color",
+        "id": "mk_label_color",
+        "label": "Standardfarve",
+        "default": "#1f1f1f"
+      },
+      {
+        "type": "color",
+        "id": "mk_label_text_color",
+        "label": "Tekstfarve",
+        "default": "#ffffff"
+      },
+      {
+        "type": "textarea",
+        "id": "mk_demo_labels",
+        "label": "Labels til demo",
+        "info": "Kun til forhåndsvisning, før produkterne har tags. Én pr. linje: produkt-handle: Label. Tøm feltet, før testen starter."
       }
     ]
   }

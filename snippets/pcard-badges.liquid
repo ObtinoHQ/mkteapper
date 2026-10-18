@@ -14,7 +14,8 @@
     assign show_on_sale_badge = false
   endunless
 -%}
-{%- if product.available == false or on_sale or product.tags.size > 0 -%}
+{%- capture mk_labels -%}{%- render 'mk-product-labels', product: product -%}{%- endcapture -%}
+{%- if product.available == false or on_sale or product.tags.size > 0 or mk_labels != blank -%}
   <div class="product-card__badge">
     {%- if product.available == false and show_soldout -%}
       <span class="f-badge f-badge--soldout" aria-hidden="true">
@@ -82,6 +83,7 @@
       -%}
       <span class="f-badge f-badge--{{ badge_type }}">{{ tag }}</span>
     {%- endfor -%}
+    {{- mk_labels -}}
   </div>
 {%- endif -%}
 

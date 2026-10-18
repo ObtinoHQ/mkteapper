@@ -1,0 +1,49 @@
+{%- comment -%}
+  MK: labels from product tags. A tag "label:Bestseller" shows a "Bestseller" badge.
+  Colors come from settings.mk_label_colors ("Label: #hex" per line), else settings.mk_label_color.
+  settings.mk_demo_labels ("handle: Label" per line) adds labels for previewing before products are tagged.
+{%- endcomment -%}
+{%- liquid
+  assign labels = ''
+  for tag in product.tags
+    assign prefix = tag | slice: 0, 6 | downcase
+    if prefix == 'label:'
+      assign text = tag | slice: 6, 100 | strip
+      if text != blank
+        assign labels = labels | append: text | append: '|'
+      endif
+    endif
+  endfor
+
+  assign demo_lines = settings.mk_demo_labels | newline_to_br | strip_newlines | split: '<br />'
+  for line in demo_lines
+    assign parts = line | split: ':'
+    assign demo_handle = parts.first | strip
+    if demo_handle == product.handle and parts.size > 1
+      assign text = line | remove_first: parts.first | remove_first: ':' | strip
+      if text != blank
+        assign labels = labels | append: text | append: '|'
+      endif
+    endif
+  endfor
+
+  assign labels = labels | split: '|' | uniq
+  assign color_lines = settings.mk_label_colors | newline_to_br | strip_newlines | split: '<br />'
+-%}
+{%- for text in labels -%}
+  {%- liquid
+    assign text_handle = text | handle
+    assign color = settings.mk_label_color
+    for line in color_lines
+      assign parts = line | split: ':'
+      assign name_handle = parts.first | strip | handle
+      if name_handle == text_handle and parts.size > 1
+        assign color = parts.last | strip
+        break
+      endif
+    endfor
+  -%}
+  <span class="f-badge mk-label mk-label--{{ text_handle }}" style="background:{{ color }};color:{{ settings.mk_label_text_color | default: '#ffffff' }}">
+    {{- text | escape -}}
+  </span>
+{%- endfor -%}
