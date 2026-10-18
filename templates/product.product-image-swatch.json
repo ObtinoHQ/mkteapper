@@ -209,7 +209,7 @@
         "mk_trust_line": {
           "type": "mk_trust_line",
           "settings": {
-            "return_text": "30 dages returret",
+            "return_text": "14 dages returret",
             "show_delivery": true,
             "showroom_text": "Showroom i Slagelse",
             "showroom_link": ""
