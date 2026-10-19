@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "breadcrumbs": {
@@ -55,9 +64,7 @@
             "icon_2": "check",
             "heading_2": "Øko-certificeret",
             "icon_3": "check",
-            "heading_3": "Fysisk showroom",
-            "icon_4": "calendar",
-            "heading_4": "Prøv i 30 dage"
+            "heading_3": "Fysisk showroom"
           }
         },
         "klarna_on_site_messaging_app_block_fzhTDC": {
@@ -88,7 +95,10 @@
             "swatch_size": 32,
             "button_style": "normal",
             "size_title": "Size",
-            "size_chart_from_page": ""
+            "size_chart_from_page": "",
+            "mk_size_style": "buttons",
+            "mk_show_color_siblings": true,
+            "mk_size_help_text": "Hvordan vælger jeg den rigtige størrelse?"
           }
         },
         "buy_buttons": {
@@ -125,9 +135,7 @@
             "icon_2": "arrow-up-left",
             "heading_2": "Over <strong>10.000</strong> glade kunder",
             "icon_3": "smiley",
-            "heading_3": "Telefon<strong>:</strong> <strong>50 34 50 23</strong>",
-            "icon_4": "calendar",
-            "heading_4": "Prøv i 30 dage"
+            "heading_3": "Telefon<strong>:</strong> <strong>50 34 50 23</strong>"
           }
         },
         "pickup_availability": {
@@ -177,7 +185,7 @@
             "heading": "Levering & Returnering",
             "heading_size": "h4",
             "icon": "none",
-            "content": "<h5>🚚 Levering</h5><h6><strong>Gratis levering til døren</strong></h6><ul><li>Gratis levering til døren på alle løse tæpper og boligtilbehør i Danmark<br/></li><li>Gratis levering til døren ved køb over <strong>999 kr.</strong> til Sverige<br/></li></ul><p><strong>Levering til kantsten</strong></p><ul><li>Gælder for laminat, vinylgulv og væg-til-væg tæpper<br/></li><li>Pris fra <strong>599 kr.</strong><br/></li></ul><h6><strong>Leveringsinformation</strong></h6><ul><li>Pakker leveres med <strong>GLS</strong> på hverdage mellem ca. kl. <strong>08–16</strong><br/></li><li>Alle leveringer sker i samarbejde med <strong>GLS eller Danske Fragtmænd</strong><br/></li><li>Er du ikke hjemme ved levering, bliver pakken automatisk afleveret i en <strong>GLS PakkeShop</strong> nær dig (maks. 20 kg)<br/></li></ul><h5>🔄 Returnering</h5><h6><strong>Returret</strong></h6><ul><li>Du har <strong>30 dages returret</strong> på løse tæpper og boligtilbehør<br/></li><li>Kunden betaler selv for returnering<br/></li></ul><h6><strong>Pris for returnering</strong></h6><ul><li>Pris fra <strong>150 kr. i Danmark</strong><br/></li><li>Prisen afhænger af varens størrelse og vægt<br/></li></ul><h6><strong>Sådan returnerer du</strong></h6><ul><li>Kontakt os på <a><strong>info@mktaepper.dk</strong></a> for at anmode om returnering<br/></li><li>Vi sender dig et <strong>returlabel/link</strong><br/></li><li>Returnering skal ske via <strong>GLS</strong><br/></li><li>Retur til PakkeShop: maks. <strong>20 kg</strong><br/></li><li>Afhentning på adresse er muligt mod <strong>ekstra tillæg</strong></li></ul><h6><strong>Undtagelser</strong></h6><p>Der er <strong>ingen returret</strong> på rullevarer som <strong>vinylgulv og væg-til-væg tæpper</strong>, da disse skæres efter kundens specifikke mål<strong>.</strong></p>",
+            "content": "<h5>🚚 Levering</h5><h6><strong>Gratis levering til døren</strong></h6><ul><li>Gratis levering til døren på alle løse tæpper og boligtilbehør i Danmark<br/></li><li>Gratis levering til døren ved køb over <strong>999 kr.</strong> til Sverige<br/></li></ul><p><strong>Levering til kantsten</strong></p><ul><li>Gælder for laminat, vinylgulv og væg-til-væg tæpper<br/></li><li>Pris fra <strong>599 kr.</strong><br/></li></ul><h6><strong>Leveringsinformation</strong></h6><ul><li>Pakker leveres med <strong>GLS</strong> på hverdage mellem ca. kl. <strong>08–16</strong><br/></li><li>Alle leveringer sker i samarbejde med <strong>GLS eller Danske Fragtmænd</strong><br/></li><li>Er du ikke hjemme ved levering, bliver pakken automatisk afleveret i en <strong>GLS PakkeShop</strong> nær dig (maks. 20 kg)<br/></li></ul><h5>🔄 Returnering</h5><h6><strong>Returret</strong></h6><ul><li>Du har <strong>14 dages returret</strong> på løse tæpper og boligtilbehør<br/></li><li>Kunden betaler selv for returnering<br/></li></ul><h6><strong>Pris for returnering</strong></h6><ul><li>Pris fra <strong>150 kr. i Danmark</strong><br/></li><li>Prisen afhænger af varens størrelse og vægt<br/></li></ul><h6><strong>Sådan returnerer du</strong></h6><ul><li>Kontakt os på <a><strong>info@mktaepper.dk</strong></a> for at anmode om returnering<br/></li><li>Vi sender dig et <strong>returlabel/link</strong><br/></li><li>Returnering skal ske via <strong>GLS</strong><br/></li><li>Retur til PakkeShop: maks. <strong>20 kg</strong><br/></li><li>Afhentning på adresse er muligt mod <strong>ekstra tillæg</strong></li></ul><h6><strong>Undtagelser</strong></h6><p>Der er <strong>ingen returret</strong> på rullevarer som <strong>vinylgulv og væg-til-væg tæpper</strong>, da disse skæres efter kundens specifikke mål<strong>.</strong></p>",
             "page": "",
             "default_open": false,
             "show_below_product_media": true
@@ -217,6 +225,15 @@
             "show_dynamic_checkout_buttons": false,
             "show_quantity": true
           }
+        },
+        "mk_trust_line": {
+          "type": "mk_trust_line",
+          "settings": {
+            "return_text": "14 dages returret",
+            "show_delivery": true,
+            "showroom_text": "Showroom i Slagelse",
+            "showroom_link": ""
+          }
         }
       },
       "block_order": [
@@ -229,6 +246,7 @@
         "inventory",
         "variant_picker",
         "buy_buttons",
+        "mk_trust_line",
         "payment_info",
         "icon_with_text_UAYgQU",
         "pickup_availability",

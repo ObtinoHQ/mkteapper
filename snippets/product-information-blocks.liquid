@@ -423,6 +423,10 @@
               product_id: product.id
             -%}
           </div>
+        {%- when 'mk_trust_line' -%}
+          <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
+            {%- render 'mk-trust-line', block: block, product: product -%}
+          </div>
         {%- when 'pickup_availability' -%}
           <div class="{{ block_classes }}" {{ block.shopify_attributes }}>
             {%- render 'product-pickup-availability', product: product -%}
@@ -492,12 +496,28 @@
             {% render 'product-grid-icon-box', block: block %}
           </div>
         {%- when 'timer' -%}
-          {%- if product.tags contains 'sale' -%}
+          {%- liquid
+            # MK: show on products that are on sale, using the shared sale timer
+            assign timer_variant = product.selected_or_first_available_variant
+            assign timer_on_sale = false
+            if timer_variant.compare_at_price > timer_variant.price or product.tags contains 'sale'
+              assign timer_on_sale = true
+            endif
+            assign timer_type = block.settings.type
+            assign timer_duration = block.settings.duration
+            assign timer_time = block.settings.time
+            if block.settings.mk_use_sale_timer
+              assign timer_type = settings.mk_sale_timer_type
+              assign timer_duration = settings.mk_sale_timer_duration
+              assign timer_time = settings.mk_sale_timer_time
+            endif
+          -%}
+          {%- if timer_on_sale -%}
           {%- capture rgb -%}
             {{ block.settings.text_color.red }},{{ block.settings.text_color.green }},{{ block.settings.text_color.blue }}
           {%- endcapture -%}
           <div
-            class="{{ block_classes }} countdown__wrapper blocks-radius flex flex-wrap items-center justify-between gap-2 md:gap-4"
+            class="{{ block_classes }} mk-pdp-timer countdown__wrapper blocks-radius flex flex-wrap items-center justify-between gap-2 md:gap-4"
             style="color: {{ block.settings.text_color }};--color-foreground: {{ rgb }};"
             {{ block.shopify_attributes }}
           >
@@ -507,12 +527,12 @@
                 <span class="font-body-bolder md:text-base text-sm-extra">{{ block.settings.text }}</span>
               {%- endif -%}
             </div>
-            {%- if block.settings.type == 'evergreen' or block.settings.time != blank -%}
+            {%- if timer_type == 'evergreen' or timer_time != blank -%}
               {%- render 'countdown-timer',
                 id: block.id,
-                type: block.settings.type,
-                duration: block.settings.duration,
-                time: block.settings.time,
+                type: timer_type,
+                duration: timer_duration,
+                time: timer_time,
                 number_size: 'h4',
                 custom_class: 'flex items-center justify-center',
                 block_class: 'font-body-bolder'

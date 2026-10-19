@@ -1,0 +1,102 @@
+{%- comment -%}
+  Suggests the rug underlay in the size that fits each rug in the cart:
+  the largest underlay size that is not bigger than the rug on either side.
+  Underlay products: Theme settings > MK optimering > Tæppeunderlag (one product with sizes, or one product per size).
+{%- endcomment -%}
+{%- liquid
+  assign underlays = settings.mk_underlay_products
+
+  assign underlay_in_cart = false
+  for u in underlays
+    for item in cart.items
+      if item.product_id == u.id
+        assign underlay_in_cart = true
+      endif
+    endfor
+  endfor
+-%}
+{%- if underlays != blank and underlay_in_cart == false -%}
+  {%- assign shown = 0 -%}
+  {%- for item in cart.items -%}
+    {%- liquid
+      if shown >= 2
+        break
+      endif
+      assign rug_parsed = ''
+      for opt in item.options_with_values
+        capture rug_parsed
+          render 'mk-size-parse', value: opt.value
+        endcapture
+        if rug_parsed != blank
+          break
+        endif
+      endfor
+      if rug_parsed == blank
+        continue
+      endif
+
+      assign rp = rug_parsed | split: '|'
+      assign rug_dims = rp[1] | remove: 'r' | split: 'x'
+      assign rw = rug_dims[0] | plus: 0
+      assign rh = rug_dims[1] | default: rug_dims[0] | plus: 0
+
+      assign best = nil
+      assign best_product = nil
+      assign best_area = 0
+      assign best_label = ''
+      for u in underlays
+        for uv in u.variants
+          unless uv.available
+            continue
+          endunless
+          # Size from the variant options, or from the title when each size is its own product
+          assign up = ''
+          assign candidates = uv.options
+          if u.has_only_default_variant
+            assign candidates = u.title | replace: ',', ' ' | split: ' '
+          endif
+          for c in candidates
+            capture up
+              render 'mk-size-parse', value: c
+            endcapture
+            if up != blank
+              break
+            endif
+          endfor
+          if up == blank
+            continue
+          endif
+          assign upp = up | split: '|'
+          assign udims = upp[1] | remove: 'r' | split: 'x'
+          assign uw = udims[0] | plus: 0
+          assign uh = udims[1] | default: udims[0] | plus: 0
+          if uw <= rw and uh <= rh
+            assign uarea = uw | times: uh
+            if uarea > best_area
+              assign best = uv
+              assign best_product = u
+              assign best_area = uarea
+              assign best_label = upp[3]
+            endif
+          endif
+        endfor
+      endfor
+    -%}
+    {%- if best != nil -%}
+      {%- assign shown = shown | plus: 1 -%}
+      <div class="mk-underlay">
+        {%- assign uimg = best.image | default: best_product.featured_image -%}
+        {%- if uimg -%}
+          {{ uimg | image_url: width: 120 | image_tag: loading: 'lazy', class: 'mk-underlay__img', alt: best_product.title }}
+        {%- endif -%}
+        <div class="mk-underlay__text">
+          <p class="mk-underlay__title">Skridsikkert underlag til dit {{ rp[3] }} tæppe</p>
+          <p class="mk-underlay__meta">{{ best_label }} · {{ best.price | money_without_trailing_zeros }}</p>
+        </div>
+        <button type="button" class="btn btn--secondary btn--small mk-underlay__add" data-mk-add-variant="{{ best.id }}">
+          <span class="btn__text">Tilføj</span>
+        </button>
+      </div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endif -%}

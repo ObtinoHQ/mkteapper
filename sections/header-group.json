@@ -268,7 +268,8 @@
       "type": "Timer-section",
       "name": "Custom Countdown Section",
       "settings": {
-        "heading": "SUMMER SALE OP TIL  40%",
+        "mk_hide_on_product": true,
+        "heading": "KÆMPE EFTERÅRS UDSALG OP TIL  40%",
         "button_label": "Se tilbud",
         "button_url": "shopify://collections/mid-season-sale",
         "bg_color": "#ededed",

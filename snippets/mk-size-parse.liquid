@@ -1,0 +1,106 @@
+{%- comment -%}
+  Parses a raw size value ("080x150", "160x160 rundt", "Ø40 cm", "80 x 250 cm løber",
+  "160x230 ovalt", "40x60 (FORUDBESTILLING UGE 46)")
+  into one normalized form, so sizes can be sorted, grouped and matched across products.
+
+  Accepts:
+  - value: {String} raw option value
+
+  Outputs (no whitespace): "sortkey|key|shape|label" or nothing when the value is not a size.
+  - sortkey: 9-digit area, sorts smallest to largest as a string
+  - key: "80x150" or "r160", used to match sizes across products and settings.
+    Oval, organic and "shape" rugs get their own key ("160x230-oval"), so they never pass for a rectangle.
+  - shape: rect | runner | round
+  - label: "80 × 150 cm" or "Ø 160 cm", plus the shape word and any note in brackets
+
+  Usage:
+  {%- capture parsed -%}{% render 'mk-size-parse', value: value %}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign raw = value | append: '' | downcase | strip
+  assign mk_shape_words = 'oval,organisk,shape' | split: ','
+  assign mk_note_markers = '(,forudbestilling' | split: ','
+  assign shape = 'rect'
+  if raw contains 'rund' or raw contains 'ø' or raw contains '⌀' or raw contains 'Ø'
+    assign shape = 'round'
+  endif
+
+  # Shape words and notes that must survive into the label (same rules as tools/mk_shopify.py)
+  assign variant_word = ''
+  for word in mk_shape_words
+    if raw contains word
+      assign variant_word = word
+      break
+    endif
+  endfor
+  assign note = ''
+  assign note_at = -1
+  for marker in mk_note_markers
+    if raw contains marker
+      assign before = raw | split: marker | first
+      if note_at < 0 or before.size < note_at
+        assign note_at = before.size
+      endif
+    endif
+  endfor
+  if note_at >= 0
+    assign note = value | append: '' | strip | slice: note_at, 200 | strip
+  endif
+
+  assign clean = raw | remove: 'cm' | remove: 'rundt' | remove: 'rund' | remove: 'løber' | remove: 'ø' | remove: 'Ø' | remove: '⌀' | remove: 'ca.' | replace: '×', 'x' | replace: '*', 'x' | replace: ',', '.' | remove: ' '
+  assign parts = clean | split: 'x'
+  assign a = parts[0] | plus: 0
+  assign b = a
+  if parts.size > 1
+    assign b = parts[1] | plus: 0
+  endif
+
+  assign is_size = true
+  if parts.size < 2 and shape != 'round'
+    assign is_size = false
+  endif
+  if a < 20 or b < 20
+    assign is_size = false
+  endif
+
+  if is_size
+    if a > b
+      assign tmp = a
+      assign a = b
+      assign b = tmp
+    endif
+
+    assign a = a | round
+    assign b = b | round
+    assign area = a | times: b
+    assign sortkey = area | plus: 100000000
+
+    if shape == 'round'
+      if a == b
+        assign key = 'r' | append: a
+        assign label = 'Ø ' | append: a | append: ' cm'
+      else
+        assign key = 'r' | append: a | append: 'x' | append: b
+        assign label = a | append: ' × ' | append: b | append: ' cm oval'
+      endif
+    else
+      assign runner_limit = a | times: 2.5
+      if b >= runner_limit
+        assign shape = 'runner'
+      endif
+      assign key = a | append: 'x' | append: b
+      assign label = a | append: ' × ' | append: b | append: ' cm'
+    endif
+    if variant_word != blank
+      unless label contains variant_word
+        assign key = key | append: '-' | append: variant_word
+        assign label = label | append: ' ' | append: variant_word
+      endunless
+    endif
+    if note != blank
+      assign label = label | append: ' ' | append: note
+    endif
+
+    echo sortkey | append: '|' | append: key | append: '|' | append: shape | append: '|' | append: label
+  endif
+-%}

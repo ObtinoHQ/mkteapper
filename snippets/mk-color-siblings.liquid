@@ -1,0 +1,74 @@
+{%- comment -%}
+  Color swatches that link to the same rug in other colors (each color is its own product).
+
+  Source: product metafield custom.farvevarianter (list of products), the full color group.
+  Until that is filled in, Theme settings > MK optimering > "Farvegrupper til demo" can list groups of
+  product handles (one group per line, comma-separated), so the swatches can be previewed.
+  The current product is shown even when it is missing from the list.
+  Color name: metafield custom.farve, otherwise the last word of the title ("... Kenso Brun" -> "Brun").
+  Swatch image: metafield custom.swatch_billede, otherwise the product's first image.
+
+  Accepts:
+  - product: {Object}
+{%- endcomment -%}
+{%- liquid
+  assign siblings = product.metafields.custom.farvevarianter.value
+  if siblings == blank and settings.mk_demo_color_groups != blank
+    assign demo_groups = settings.mk_demo_color_groups | newline_to_br | split: '<br />'
+    assign own_handle = ',' | append: product.handle | append: ','
+    for line in demo_groups
+      assign padded = line | strip | remove: ' ' | prepend: ',' | append: ','
+      if padded contains own_handle
+        assign siblings = line | strip | remove: ' ' | split: ','
+        break
+      endif
+    endfor
+  endif
+  assign self_in_list = false
+  for s in siblings
+    if s == product.handle or s.id == product.id
+      assign self_in_list = true
+    endif
+  endfor
+
+  assign current_color = product.metafields.custom.farve.value | default: ''
+  if current_color == blank
+    assign current_color = product.title | split: ' ' | last
+  endif
+-%}
+{%- if siblings != blank and siblings.size > 0 -%}
+<div class="mk-colors" data-mk-colors>
+  <p class="form__label">
+    <span class="font-body-bolder">Farve:</span>
+    <span class="text-subtext" data-mk-color-name>{{ current_color }}</span>
+  </p>
+  <ul class="mk-colors__list" role="list">
+    {%- unless self_in_list -%}
+      {%- render 'mk-color-sibling-item', item: product, current: true -%}
+    {%- endunless -%}
+    {%- comment -%} Products that share a title (e.g. a round and a rectangular version) show once {%- endcomment -%}
+    {%- assign shown_titles = '|' | append: product.title | downcase | append: '|' -%}
+    {%- for ref in siblings -%}
+      {%- liquid
+        # Metafield gives products; the demo setting gives handles
+        if ref.id != blank
+          assign s = ref
+        else
+          assign s = all_products[ref]
+        endif
+      -%}
+      {%- if s.id == blank -%}{%- continue -%}{%- endif -%}
+      {%- assign s_title = '|' | append: s.title | downcase | append: '|' -%}
+      {%- if s.id != product.id and shown_titles contains s_title -%}
+        {%- continue -%}
+      {%- endif -%}
+      {%- if s.available or s.id == product.id -%}
+        {%- assign shown_titles = shown_titles | append: s.title | downcase | append: '|' -%}
+        {%- assign is_current = false -%}
+        {%- if s.id == product.id -%}{%- assign is_current = true -%}{%- endif -%}
+        {%- render 'mk-color-sibling-item', item: s, current: is_current -%}
+      {%- endif -%}
+    {%- endfor -%}
+  </ul>
+</div>
+{%- endif -%}

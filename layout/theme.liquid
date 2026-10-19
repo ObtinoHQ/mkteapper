@@ -126,6 +126,38 @@
     {% comment %} Custom metafield for head tag like GTag tracking {% endcomment %}
     {{ shop.metafields.foxtheme.code_head.value }}
     {% comment %} End custom metafield for head tag like GTag tracking {% endcomment %}
+    {%- comment -%} MK optimized version {%- endcomment -%}
+    {{ 'mk-optimized.css' | asset_url | stylesheet_tag }}
+    <script>
+      window.MkSettings = {
+        cutoffHour: {{ settings.mk_delivery_cutoff_hour | default: 14 | json }},
+        klaviyoFormId: {{ settings.mk_klaviyo_form_id | strip | json }},
+        newsletterMinPageviews: {{ settings.mk_newsletter_min_pageviews | default: 2 | json }},
+        newsletterDelaySeconds: {{ settings.mk_newsletter_delay_seconds | default: 30 | json }}
+      };
+    </script>
+    <script src="{{ 'mk-optimized.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.mk_cookie_bottom_bar -%}
+      <style>
+        @media screen and (max-width: 749px) {
+          /* Cookiebot as a bottom bar on mobile: same choices, rugs stay visible behind it */
+          #CybotCookiebotDialog {
+            top: auto !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            transform: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            max-height: 45vh !important;
+            margin: 0 !important;
+            border-radius: 1.2rem 1.2rem 0 0 !important;
+          }
+          #CybotCookiebotDialog .CybotCookiebotScrollContainer { max-height: 18vh !important; min-height: 0 !important; }
+          #CybotCookiebotDialogBodyUnderlay { display: none !important; }
+        }
+      </style>
+    {%- endif -%}
   </head>
 
   <body

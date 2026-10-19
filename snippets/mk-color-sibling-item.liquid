@@ -1,0 +1,23 @@
+{%- liquid
+  assign color = item.metafields.custom.farve.value | default: ''
+  if color == blank
+    assign color = item.title | split: ' ' | last
+  endif
+  assign img = item.metafields.custom.swatch_billede.value | default: item.featured_image
+-%}
+<li>
+  <a
+    href="{{ item.url }}"
+    class="mk-colors__item{% if current %} is-current{% endif %}"
+    {% if current %}aria-current="true"{% endif %}
+    title="{{ color | escape }}"
+    data-mk-color="{{ color | escape }}"
+  >
+    {%- if img != blank -%}
+      {{ img | image_url: width: 160 | image_tag: loading: 'lazy', widths: '80, 160', sizes: '80px', alt: color, class: 'mk-colors__img' }}
+    {%- else -%}
+      <span class="mk-colors__img mk-colors__img--empty"></span>
+    {%- endif -%}
+    <span class="visually-hidden">{{ color }}</span>
+  </a>
+</li>

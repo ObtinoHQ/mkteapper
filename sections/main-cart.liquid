@@ -675,7 +675,10 @@
           {%- liquid
             for block in section.blocks
               if block.type == 'free_shipping_goal'
-                if settings.free_shipping_minimum_amount != blank
+                if localization.country.iso_code == 'SE' and settings.mk_free_shipping_se != blank
+                  assign minimum_amount = settings.mk_free_shipping_se | remove: ' ' | remove: '.'
+                  render 'free-shipping-goal', minimum_amount: minimum_amount
+                elsif settings.free_shipping_minimum_amount != blank
                   assign minimum_amount = settings.free_shipping_minimum_amount | remove: ' '
                   render 'free-shipping-goal', minimum_amount: minimum_amount
                 endif

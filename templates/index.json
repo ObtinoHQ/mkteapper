@@ -12,17 +12,17 @@
     "collection_list_slider_6qbNfj": {
       "type": "collection-list-slider",
       "blocks": {
-        "featured_collection_xjRDVj": {
+        "featured_collection_4H9LzM": {
           "type": "featured_collection",
           "settings": {
-            "collection": "udendors-taepper",
-            "title": ""
+            "collection": "shaggy-taepper",
+            "title": "Shaggy & Rya"
           }
         },
-        "featured_collection_ixU84H": {
+        "featured_collection_L9N3Tg": {
           "type": "featured_collection",
           "settings": {
-            "collection": "fladvaevede-taepper",
+            "collection": "pels-taepper",
             "title": ""
           }
         },
@@ -40,11 +40,18 @@
             "title": ""
           }
         },
-        "featured_collection_4H9LzM": {
+        "featured_collection_HwzPfD": {
           "type": "featured_collection",
           "settings": {
-            "collection": "shaggy-taepper",
-            "title": "Shaggy & Rya"
+            "collection": "uld-taepper",
+            "title": ""
+          }
+        },
+        "featured_collection_ixU84H": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fladvaevede-taepper",
+            "title": ""
           }
         },
         "featured_collection_eBphH3": {
@@ -54,24 +61,10 @@
             "title": ""
           }
         },
-        "featured_collection_L9N3Tg": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "pels-taepper",
-            "title": ""
-          }
-        },
         "featured_collection_J6hxH9": {
           "type": "featured_collection",
           "settings": {
             "collection": "jute-taepper",
-            "title": ""
-          }
-        },
-        "featured_collection_HwzPfD": {
-          "type": "featured_collection",
-          "settings": {
-            "collection": "uld-taepper",
             "title": ""
           }
         },
@@ -88,20 +81,27 @@
             "collection": "taepper-lobere-til-kokkenet",
             "title": "Tæppe Løbere"
           }
+        },
+        "featured_collection_xjRDVj": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "udendors-taepper",
+            "title": ""
+          }
         }
       },
       "block_order": [
-        "featured_collection_xjRDVj",
-        "featured_collection_ixU84H",
+        "featured_collection_4H9LzM",
+        "featured_collection_L9N3Tg",
         "featured_collection_jMA9xm",
         "featured_collection_J6V8fx",
-        "featured_collection_4H9LzM",
-        "featured_collection_eBphH3",
-        "featured_collection_L9N3Tg",
-        "featured_collection_J6hxH9",
         "featured_collection_HwzPfD",
+        "featured_collection_ixU84H",
+        "featured_collection_eBphH3",
+        "featured_collection_J6hxH9",
         "featured_collection_NkFYeg",
-        "featured_collection_gxdACj"
+        "featured_collection_gxdACj",
+        "featured_collection_xjRDVj"
       ],
       "custom_css": [
         ".f-column.swiper-slide {margin-right: 8px !important;}",
@@ -150,20 +150,20 @@
           "type": "video",
           "settings": {
             "color_scheme": "scheme-inverse",
-            "video": "shopify://files/videos/strand video_1.mp4",
+            "video": "shopify://files/videos/copy_3E6E45AE-C942-4CC6-BF9E-D1CCF824E410.mov",
             "video_url": "",
             "video_description": "",
             "image_overlay_opacity": 0,
             "content_position": "middle-center",
             "text_alignment": "center",
-            "subheading": "Skab sommerstemning inde & ude",
-            "title": "SUMMER SALE",
+            "subheading": "&nbsp;Nye tilbud – priser du ikke har set hos os før!&nbsp;",
+            "title": "KÆMPE EFTERÅRS UDSALG",
             "highlight_style": "none",
             "highlight_font_style": "italic",
             "highlight_style_color": "",
             "highlight_text_color": "",
             "heading_size": "h1",
-            "description": "<p>Spar op til 40% på tæpper, dørmåtter & tilbehør</p>",
+            "description": "<p>Op til 40% på tæpper, dørmåtter & tilbehør</p>",
             "description_size": "text-base",
             "button_label": "SHOP NU",
             "button_link": "shopify://collections/mid-season-sale",
@@ -535,7 +535,7 @@
         "collection_jAyjFh": {
           "type": "collection",
           "settings": {
-            "collection": "udendors-taepper",
+            "collection": "shaggy-taepper",
             "title": "",
             "show_banner": false,
             "color_scheme": "scheme-1",
@@ -1812,139 +1812,6 @@
         "padding_bottom": 60
       }
     },
-    "scrolling_promotion_9Hng8m": {
-      "type": "scrolling-promotion",
-      "blocks": {
-        "image_q8gfrF": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/download.png",
-            "image_height": 48,
-            "image_rounded": false,
-            "image_link": "",
-            "image_height_mobile": 40
-          }
-        },
-        "text_m9JnRY": {
-          "type": "text",
-          "settings": {
-            "text_link": "",
-            "text": "Bronze tæpper",
-            "text_size": "h4",
-            "text_opacity": 100,
-            "use_custom_color": false,
-            "custom_color": "#000000"
-          }
-        },
-        "image_RY3ezc": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/download_c9328596-0ede-4b07-aed6-3076ea32c394.avif",
-            "image_height": 48,
-            "image_rounded": false,
-            "image_link": "",
-            "image_height_mobile": 40
-          }
-        },
-        "text_DgpjXy": {
-          "type": "text",
-          "settings": {
-            "text_link": "",
-            "text": "Guld tæpper",
-            "text_size": "h4",
-            "text_opacity": 100,
-            "use_custom_color": false,
-            "custom_color": "#000000"
-          }
-        },
-        "image_edTWWx": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/download_c6a40c04-eda4-488a-a384-cdfe7fceebe5.avif",
-            "image_height": 48,
-            "image_rounded": false,
-            "image_link": "",
-            "image_height_mobile": 40
-          }
-        },
-        "text_XJkpmM": {
-          "type": "text",
-          "settings": {
-            "text_link": "",
-            "text": "Lilla tæpper",
-            "text_size": "h4",
-            "text_opacity": 100,
-            "use_custom_color": false,
-            "custom_color": "#000000"
-          }
-        },
-        "image_ag9fAR": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/download_fb0fabdf-1f67-4fd9-9c6d-26754ab36002.avif",
-            "image_height": 48,
-            "image_rounded": false,
-            "image_link": "",
-            "image_height_mobile": 40
-          }
-        },
-        "text_t4Yd9J": {
-          "type": "text",
-          "settings": {
-            "text_link": "",
-            "text": "Gule Tæpper",
-            "text_size": "h4",
-            "text_opacity": 100,
-            "use_custom_color": false,
-            "custom_color": "#000000"
-          }
-        },
-        "image_WCaLny": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/download_af6fa979-00e3-4cac-af0f-69d3208519ed.avif",
-            "image_height": 48,
-            "image_rounded": false,
-            "image_link": "",
-            "image_height_mobile": 40
-          }
-        },
-        "text_knHzY4": {
-          "type": "text",
-          "settings": {
-            "text_link": "",
-            "text": "Grønne Tæpper",
-            "text_size": "h4",
-            "text_opacity": 100,
-            "use_custom_color": false,
-            "custom_color": "#000000"
-          }
-        }
-      },
-      "block_order": [
-        "image_q8gfrF",
-        "text_m9JnRY",
-        "image_RY3ezc",
-        "text_DgpjXy",
-        "image_edTWWx",
-        "text_XJkpmM",
-        "image_ag9fAR",
-        "text_t4Yd9J",
-        "image_WCaLny",
-        "text_knHzY4"
-      ],
-      "disabled": true,
-      "settings": {
-        "color_scheme": "scheme-13",
-        "direction": "left",
-        "pause_on_hover": true,
-        "speed": 0.3,
-        "h_spacing": 28,
-        "show_section_divider": false,
-        "padding_top": 20,
-        "padding_bottom": 20
-      }
-    },
     "multicolumn_Ff4Wbj": {
       "type": "multicolumn",
       "blocks": {
@@ -2231,9 +2098,55 @@
         "padding_top": 0,
         "padding_bottom": 0
       }
+    },
+    "mk_finder": {
+      "type": "mk-size-room-finder",
+      "disabled": true,
+      "blocks": {
+        "room_stue": {
+          "type": "room",
+          "settings": {
+            "title": "Stue",
+            "link": "shopify://collections/moderne-taepper"
+          }
+        },
+        "room_sovevaerelse": {
+          "type": "room",
+          "settings": {
+            "title": "Soveværelse",
+            "link": "shopify://collections/shaggy-taepper"
+          }
+        },
+        "room_gang": {
+          "type": "room",
+          "settings": {
+            "title": "Gang og entré",
+            "link": "shopify://collections/taepper-lobere-til-gangen"
+          }
+        },
+        "room_born": {
+          "type": "room",
+          "settings": {
+            "title": "Børneværelse",
+            "link": "shopify://collections/borne-taepper"
+          }
+        }
+      },
+      "block_order": [
+        "room_stue",
+        "room_sovevaerelse",
+        "room_gang",
+        "room_born"
+      ],
+      "settings": {
+        "heading": "Find tæppet efter størrelse eller rum",
+        "color_scheme": "scheme-1",
+        "sizes": ""
+      }
     }
   },
   "order": [
+    "mk_finder",
     "collection_list_slider_6qbNfj",
     "slideshow_QdkLDR",
     "grid_banner_U8bxMc",
@@ -2254,7 +2167,6 @@
     "buttons_with_icon_7zH9F3",
     "featured_collection_RWUfH9",
     "slider_with_multicolumn_aJwbrc",
-    "scrolling_promotion_9Hng8m",
     "multicolumn_Ff4Wbj",
     "image_with_text_aXhRxw",
     "rich_text_NUWe78",

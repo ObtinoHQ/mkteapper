@@ -129,7 +129,7 @@
       },
       "320593021044489861": {
         "type": "shopify://apps/sales-discounts/blocks/countdown/29205fb1-2e68-4d81-a905-d828a51c8413",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "6460986421370555689": {
@@ -204,11 +204,6 @@
           "auto_open_trigger_method": "combination"
         }
       },
-      "11349500561483629931": {
-        "type": "shopify://apps/notify-back-in-stock-preorder/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
-        "disabled": false,
-        "settings": {}
-      },
       "16488661044329386848": {
         "type": "shopify://apps/profitmetrics/blocks/head/019b0272-dcd0-785d-9894-392186bb1e9e",
         "disabled": false,
@@ -216,6 +211,11 @@
       },
       "4619911827133728258": {
         "type": "shopify://apps/localink/blocks/notfound/019f9606-e3a3-71fa-aa25-e3f2fabf34b2",
+        "disabled": false,
+        "settings": {}
+      },
+      "11349500561483629931": {
+        "type": "shopify://apps/notify-me/blocks/app-embed/b399b727-6c85-44fc-9e21-63114bd72054",
         "disabled": false,
         "settings": {}
       }
@@ -468,7 +468,9 @@
           "progress_bar_color": "#0d8756"
         }
       }
-    }
+    },
+    "mk_demo_color_groups": "villeroy-boch-1890-uldtaeppe-kenso-beige,villeroy-boch-1890-uldtaeppe-kenso-brun,villeroy-boch-1890-uldtaeppe-kenso-creme\nbatu-ba100-beige-taeppe,batu-ba100-brun-taeppe,batu-ba100-flode-taeppe,batu-ba100-gra-taeppe,batu-ba100-solv-taeppe\nkopi-af-7000grey-rund,kopi-af-ata-7000antracit-1,kopi-af-ata-7000antracit-2,kopi-af-ata-7000antracit-4,kopi-af-ata-7000antracit-5,kopi-af-ata-7000beige,kopi-af-nizza-1800anthrazit",
+    "mk_demo_labels": "villeroy-boch-1890-uldtaeppe-kenso-beige: Bestseller\nbatu-ba100-gra-taeppe: Nyhed\nkopi-af-ata-7000beige: Bestseller"
   },
   "installed_preset_name": "Hyper",
   "presets": {
