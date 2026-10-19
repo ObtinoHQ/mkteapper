@@ -274,12 +274,57 @@
     }
   };
 
+
+  /* ---------- Product gallery: load slides when they come into view ---------- */
+  const showGalleryImage = (img) => {
+    if (img.dataset.mkSrcset) img.srcset = img.dataset.mkSrcset;
+    if (img.dataset.mkSrc) img.src = img.dataset.mkSrc;
+    delete img.dataset.mkSrcset;
+    delete img.dataset.mkSrc;
+  };
+  const initGalleryImages = () => {
+    document.querySelectorAll('.product__media-list:not([data-mk-gallery])').forEach((list) => {
+      list.dataset.mkGallery = '';
+      const imgs = Array.from(list.querySelectorAll('img[data-mk-srcset], img[data-mk-src]'));
+      if (!imgs.length) return;
+      const root = list.parentElement;
+      const slides = list.children;
+      // A slider when the second slide starts outside the visible frame (mobile); columns or a stack otherwise (desktop)
+      const isSlider = slides.length > 1 && slides[1].getBoundingClientRect().left >= root.getBoundingClientRect().right - 1;
+      if (!isSlider || !('IntersectionObserver' in window)) {
+        // Stacked or column layout: the browser's own lazy loading works there
+        imgs.forEach(showGalleryImage);
+        return;
+      }
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          showGalleryImage(e.target);
+          io.unobserve(e.target);
+        }),
+        { root, rootMargin: '0px 100% 0px 100%' } // the neighbouring slide is ready before the swipe ends
+      );
+      imgs.forEach((img) => io.observe(img));
+    });
+  };
+
   const init = () => {
     renderDeliveryDates();
     initSizeBar();
     initProductSize();
     initFinder();
     initNewsletter();
+    initGalleryImages();
+    // The product section is re-rendered when the variant changes
+    const main = document.getElementById('MainContent');
+    if (main) {
+      let queued = false;
+      new MutationObserver(() => {
+        if (queued) return;
+        queued = true;
+        requestAnimationFrame(() => { queued = false; initGalleryImages(); });
+      }).observe(main, { childList: true, subtree: true });
+    }
     document.addEventListener('cart:updated', () => setTimeout(renderDeliveryDates, 50));
     document.addEventListener('variant:changed', () => renderDeliveryDates());
     window.FoxTheme?.pubsub?.subscribe?.(FoxTheme.pubsub.PUB_SUB_EVENTS.cartUpdate, () =>

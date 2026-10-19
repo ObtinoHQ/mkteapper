@@ -30,15 +30,12 @@
   assign loading = 'lazy'
   assign fetchpriority = 'low'
 
-  # Only the first image is the LCP candidate on mobile; the second (desktop 2-column) loads eagerly at normal priority.
+  # Only the first image is the LCP candidate; the rest are deferred (see below).
   # The quick-view modal is hidden on load, so its images never compete with the page's own main image.
   if context != 'quickview'
     if position == 0
       assign loading = 'eager'
       assign fetchpriority = 'high'
-    elsif position < desktop_columns
-      assign loading = 'eager'
-      assign fetchpriority = 'auto'
     endif
   endif
 -%}
@@ -121,7 +118,7 @@
           show_play_button: true
         -%}
       {%- else -%}
-        <motion-element data-motion="zoom-out-sm" class="block product__media media-wrapper">
+        {%- capture media_image -%}
           {{
             media.preview_image
             | image_url: width: 1946
@@ -132,6 +129,16 @@
               sizes: sizes,
               widths: '400, 620, 690, 810, 980, 1240, 1380, 1620, 1960'
           }}
+        {%- endcapture -%}
+        {%- liquid
+          # MK speed: in the mobile slider Chrome fetches every "lazy" slide at once (4 MB on Kenso).
+          # Slides after the first keep their address in data-mk-* until mk-optimized.js sees them coming into view.
+          if context != 'quickview' and position > 0
+            assign media_image = media_image | replace: ' srcset="', ' data-mk-srcset="' | replace: ' src="', ' data-mk-src="'
+          endif
+        -%}
+        <motion-element data-motion="zoom-out-sm" class="block product__media media-wrapper">
+          {{ media_image }}
         </motion-element>
         {%- if enable_image_zoom -%}
           <div
