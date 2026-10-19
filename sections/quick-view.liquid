@@ -9,8 +9,15 @@
   endif
 
   assign quick_view_type = settings.quick_view_type
+
+  # MK speed: on a product page this section used to render a hidden second copy of the product.
+  # quick-view.js fetches it with ?view=mk-quick-view, so the full page load can skip it.
+  assign mk_render_quick_view = true
+  if request.page_type == 'product' and template.suffix != 'mk-quick-view' and request.design_mode == false
+    assign mk_render_quick_view = false
+  endif
 -%}
-{%- if product != blank -%}
+{%- if product != blank and mk_render_quick_view -%}
   {%- liquid
     assign media_layout = 'stacked'
     assign mobile_thumbnails = 'hide'

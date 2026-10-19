@@ -58,7 +58,7 @@ if (!customElements.get('quick-view-modal')) {
       quickview() {
         const drawerContent = this.querySelector(this.selector);
         const sectionId = this.getProductQuickViewSectionId();
-        const sectionUrl = `${this.dataset.productUrl.split('?')[0]}?section_id=${sectionId}`;
+        const sectionUrl = `${this.dataset.productUrl.split('?')[0]}?view=mk-quick-view&section_id=${sectionId}`;
         fetch(sectionUrl)
           .then((response) => response.text())
           .then((responseText) => {

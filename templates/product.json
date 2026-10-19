@@ -12,7 +12,8 @@
     "breadcrumbs": {
       "type": "breadcrumbs",
       "custom_css": [
-        "@media (min-width: 1280px) {.breadcrumbs {padding-inline: 5rem; }}"
+        "@media (min-width: 1280px) {.breadcrumbs {padding-inline: 5rem; }}",
+        "@media (max-width: 767px) {.breadcrumbs {display: none; }}"
       ],
       "settings": {
         "container": "fixed",
@@ -55,6 +56,7 @@
         },
         "icon_with_text": {
           "type": "icon-with-text",
+          "disabled": true,
           "settings": {
             "layout": "horizontal",
             "title_font": "body-bolder",
@@ -126,6 +128,7 @@
         },
         "icon_with_text_UAYgQU": {
           "type": "icon-with-text",
+          "disabled": true,
           "settings": {
             "layout": "vertical",
             "title_font": "body",
@@ -140,6 +143,7 @@
         },
         "pickup_availability": {
           "type": "pickup_availability",
+          "disabled": true,
           "settings": {}
         },
         "promotion_alert_L7ipQp": {
@@ -293,6 +297,7 @@
     },
     "image_with_text_ndXRmK": {
       "type": "image-with-text",
+      "disabled": true,
       "blocks": {
         "badge_X4ygyR": {
           "type": "badge",

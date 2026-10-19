@@ -71,7 +71,8 @@
         {%- liquid
           assign loading = 'lazy'
           assign fetchpriority = 'auto'
-          if forloop.index == 1 and section.index < 2 or enable_preload_image
+          # MK: the slideshow sits under a small collection slider on the homepage, so it is still the first screen
+          if forloop.index == 1 and section.index < 3 or enable_preload_image
             assign loading = 'eager'
             assign fetchpriority = 'high'
           endif

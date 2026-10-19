@@ -75,7 +75,18 @@
                 {{ block.shopify_attributes }}
                 data-index="{{ forloop.index0 }}"
               >
+                {%- liquid
+                  # MK speed: without sizes the browser picked 1500 px files for 90 px circles on mobile (~400 KB each)
+                  assign mk_mobile_size = '45vw'
+                  if section.settings.carousel_item_size == 'fixed'
+                    assign mk_mobile_size = '25vw'
+                  endif
+                  capture mk_image_sizes
+                    echo '(max-width: 767px) ' | append: mk_mobile_size | append: ', calc(min(100vw, ' | append: settings.page_width | append: 'px) / ' | append: section.settings.columns_desktop | append: ')'
+                  endcapture
+                -%}
                 {% render 'card-collection',
+                  image_sizes: mk_image_sizes,
                   collection: collection,
                   featured_image: block.settings.image,
                   title: title,
