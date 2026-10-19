@@ -30,9 +30,16 @@
   assign loading = 'lazy'
   assign fetchpriority = 'low'
 
-  if position < desktop_columns
-    assign loading = 'eager'
-    assign fetchpriority = 'high'
+  # Only the first image is the LCP candidate on mobile; the second (desktop 2-column) loads eagerly at normal priority.
+  # The quick-view modal is hidden on load, so its images never compete with the page's own main image.
+  if context != 'quickview'
+    if position == 0
+      assign loading = 'eager'
+      assign fetchpriority = 'high'
+    elsif position < desktop_columns
+      assign loading = 'eager'
+      assign fetchpriority = 'auto'
+    endif
   endif
 -%}
 {%- capture sizes -%}

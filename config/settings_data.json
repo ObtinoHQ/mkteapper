@@ -129,7 +129,7 @@
       },
       "320593021044489861": {
         "type": "shopify://apps/sales-discounts/blocks/countdown/29205fb1-2e68-4d81-a905-d828a51c8413",
-        "disabled": false,
+        "disabled": true,
         "settings": {}
       },
       "6460986421370555689": {

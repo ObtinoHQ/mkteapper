@@ -1,3 +1,11 @@
+{%- liquid
+  # MK: the product page has its own sale timer by the price, so two countdowns would show at once
+  assign mk_hide_timer = false
+  if section.settings.mk_hide_on_product and request.page_type == 'product'
+    assign mk_hide_timer = true
+  endif
+-%}
+{%- unless mk_hide_timer -%}
 {{ 'component-countdown-timer.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'countdown-timer.js' | asset_url }}" defer="defer"></script>
 <style>
@@ -98,6 +106,7 @@ a.countdown-cta-btn span {
 
 </div>
 </section>
+{%- endunless -%}
 
 {% schema %}
 {
@@ -109,6 +118,13 @@ a.countdown-cta-btn span {
       "label": "Brug udsalgs-timeren fra temaindstillinger",
       "info": "Temaindstillinger > MK optimering > Udsalgs-timer. Så følger timeren på produktsiden med.",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "mk_hide_on_product",
+      "label": "Skjul på produktsider",
+      "info": "Produktsiden har sin egen timer ved prisen.",
+      "default": false
     },
     {
   "type": "text",

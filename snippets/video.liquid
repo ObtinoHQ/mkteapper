@@ -60,6 +60,31 @@
           ></iframe>
         {%- endif -%}
       {%- elsif video != blank -%}
+        {%- liquid
+          # MK speed: Shopify's default source is often the 1080p file (~7 Mbps). 720p looks the same in a
+          # background/hero video and is about half the data, which matters most on mobile.
+          assign mk_source = blank
+          assign mk_source_height = 0
+          for source in video.sources
+            if source.format == 'mp4' and source.height <= 720 and source.height > mk_source_height
+              assign mk_source = source
+              assign mk_source_height = source.height
+            endif
+          endfor
+        -%}
+        {%- if mk_source != blank -%}
+          <video
+            playsinline="true"
+            {% if muted %}muted="muted"{% endif %}
+            autoplay="autoplay"
+            {% if loop %}loop="loop"{% endif %}
+            {% if controls %}controls="controls"{% endif %}
+            preload="none"
+            poster="{{ video.preview_image | image_url: width: 800 }}"
+          >
+            <source src="{{ mk_source.url }}" type="{{ mk_source.mime_type }}">
+          </video>
+        {%- else -%}
         {{-
           video
           | video_tag:
@@ -71,6 +96,7 @@
             preload: 'none',
             image_size: '800x'
         -}}
+        {%- endif -%}
       {%- endif -%}
     </template>
     {%- if show_play_button -%}
