@@ -87,6 +87,10 @@
   if section_index < 3 and index == 1
     assign loading = 'eager'
     assign fetchpriority = 'high'
+  elsif section_index < 3 and index <= 4
+    # MK: the rest of the first row (2 cards on mobile, 4 on desktop) is on the first screen too
+    assign loading = 'eager'
+    assign fetchpriority = 'auto'
   endif
 
   if pcard_style == null
